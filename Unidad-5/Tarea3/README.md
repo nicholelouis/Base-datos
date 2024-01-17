@@ -307,5 +307,38 @@ SELECT nombre, LENGTH(nombre) as longitud_nombre FROM empleados;
 ```
 ## Cuenta el número total de empleados en cada departamento.
 ```sql
+SELECT departamento, COUNT(*) AS total_empleados FROM empleados GROUP BY departamento;
+```
+```sql
+┌──────────────────┬─────────────────┐
+│   departamento   │ total_empleados │
+├──────────────────┼─────────────────┤
+│ Recursos Humanos │ 6               │
+│ TI               │ 7               │
+│ Ventas           │ 7               │
+└──────────────────┴─────────────────┘
+```
+## Muestra la hora actual.
+```sql
+SELECT CURRENT_TIME AS hora_actual;
+```
+```sql
+┌─────────────┐
+│ hora_actual │
+├─────────────┤
+│ 20:17:04    │
+└─────────────┘
+```
+## Convierte el salario a un valor de punto flotante.
+```sql
 
+```
+```sql
+
+```
+## Muestra los primeros tres caracteres de cada nombre de empleado.
+```sql
+
+```
+```sql
 ```

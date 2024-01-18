@@ -1,5 +1,5 @@
 # Tarea 3
-## paso1:
+
 Para empezar crearemos la base de datos. Para ellos deberemos de crarla usando el siguiente comado
 
 ```sql
@@ -36,10 +36,19 @@ INSERT INTO empleados (nombre, salario, departamento) VALUES ('Natalia', 54000, 
 INSERT INTO empleados (nombre, salario, departamento) VALUES ('Roberto', 49000, 'Recursos Humanos');
 INSERT INTO empleados (nombre, salario, departamento) VALUES ('Beatriz', 63000, 'TI');
 ```
-
-
-
-
+Abrimos nuestra bade de datos
+```sql
+sqlite3 Tarea3.db
+```
+Comandos:
+```sql
+.read empleados-dump.sql
+```
+```sql
+.table
+.headers on
+.mode box
+```
 
 ## Muestra el nombre de todos los empleados en mayúsculas.
 ```sql

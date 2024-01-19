@@ -409,8 +409,7 @@ SELECT * FROM productos WHERE (categoria LIKE 'L%');
 │ 9  │ Queso      │ Lácteos   │ 4.0    │
 │ 13 │ Detergente │ Limpieza  │ 2.8    │
 └────┴────────────┴───────────┴────────┘
-```
-## 27.- 
+``` 
 ## 28.- Mostrar los productos cuyo nombre tiene al menos 5 caracteres.
 ```sql
 SELECT * FROM productos WHERE LENGTH(nombre) >= 5;

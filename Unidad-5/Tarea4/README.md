@@ -1,5 +1,5 @@
 # Tarea 4
-![Diagrama ER](/Users/nikki/Downloads/Tarea4.png)
+![Diagrama ER](/../Downloads/Tarea4.png)
 
 ## 1.- Mostrar todos los productos de la categoría "Bebidas".
 

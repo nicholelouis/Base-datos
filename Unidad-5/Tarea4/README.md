@@ -1,5 +1,10 @@
 # Tarea 4
-![Diagrama ER](/../Downloads/Tarea4.png)
+
+## Diagrama Entidad Relación.
+![Diagrama ER](../Tarea4.png/)
+
+## Diagrama Modelo Rrelacional.
+![Diagrama MR](/../Downloads/Tarea42.png)
 
 ## 1.- Mostrar todos los productos de la categoría "Bebidas".
 

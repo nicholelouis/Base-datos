@@ -1,10 +1,13 @@
 # Tarea 4
 
 ## Diagrama Entidad Relación.
-![Diagrama ER](../Tarea4.png/)
+![Diagrama ER](https://github.com/nicholelouis/Base-datos/blob/main/Diagrama%20sin%20título.drawio2.png?raw=true)
 
-## Diagrama Modelo Rrelacional.
-![Diagrama MR](/../Downloads/Tarea42.png)
+## Diagrama Modelo Relacional.
+![Diagrama MR](https://raw.githubusercontent.com/nicholelouis/Base-datos/73d4269f2b833d84041a1d6131503d700462f960/Diagrama%20sin%20título.drawio.png)
+
+## Indica si la BBDD esta normalizada hasta la 3ª forma normal, justificando la respuesta.
+La base de datos no cumple con la tercera forma normal, ya que las columnas de precio y categoría no deberían estar en la tabla de productos. Esto complica las operaciones de inserción, eliminación y actualización, ya que no están directamente relacionadas con la clave primaria. Sería más eficiente tener una tabla separada para precio y categoría, relacionada a la tabla de productos.
 
 ## 1.- Mostrar todos los productos de la categoría "Bebidas".
 

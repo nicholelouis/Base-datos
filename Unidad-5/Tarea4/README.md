@@ -339,30 +339,6 @@ SELECT categoria, COUNT(*) as cantidad_total
 │ Verduras  │ 1              │
 └───────────┴────────────────┘
 ```
-## 21.- Encontrar la cantidad total de productos en cada categoría.
-```sql
-SELECT categoria, COUNT(*) as cantidad_total
-   ...> FROM productos
-   ...> GROUP BY categoria;
-┌───────────┬────────────────┐
-│ categoria │ cantidad_total │
-├───────────┼────────────────┤
-│ Alimentos │ 1              │
-│ Bebidas   │ 3              │
-│ Carnes    │ 1              │
-│ Cocina    │ 1              │
-│ Conservas │ 1              │
-│ Desayuno  │ 1              │
-│ Frutas    │ 1              │
-│ Higiene   │ 2              │
-│ Hogar     │ 1              │
-│ Limpieza  │ 1              │
-│ Lácteos   │ 4              │
-│ Panadería │ 1              │
-│ Snacks    │ 1              │
-│ Verduras  │ 1              │
-└───────────┴────────────────┘
-```
 ## 22.- Listar los productos que tienen un precio igual a la media de precios.
 ```sql
 SELECT id,nombre, precio from productos where precio = (SELECT AVG(precio) from productos);
@@ -395,7 +371,7 @@ SELECT * FROM productos WHERE (nombre LIKE '%o');
 ```sql
 SELECT p.id, p.nombre from productos as p, ventas as v WHERE p.id  = v.id_producto GROUP BY p.id, p.nombre HAVING COUNT(DISTINCT v.fecha) > 1;
 ```
-### No hay dos productos que tengan la misma fecha
+ No hay dos productos que tengan la misma fecha.
 ## 26.- Listar los productos cuya categoría comienza con la letra 'L'.
 ```sql
 
@@ -437,7 +413,7 @@ SELECT * FROM productos WHERE LENGTH(nombre) >= 5;
 └────┴────────────────────┴───────────┴────────┘
 ```
 ## 29.- Encontrar los productos que tienen un precio superior a la media en la tabla "productos".
-```sql
+
 SELECT * from productos as p  WHERE p.precio > (SELECT AVG(precio) as precio_media FROM productos);
 ┌────┬─────────────────┬───────────┬────────┐
 │ id │     nombre      │ categoria │ precio │

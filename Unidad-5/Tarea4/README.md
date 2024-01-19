@@ -413,7 +413,7 @@ SELECT * FROM productos WHERE LENGTH(nombre) >= 5;
 └────┴────────────────────┴───────────┴────────┘
 ```
 ## 29.- Encontrar los productos que tienen un precio superior a la media en la tabla "productos".
-
+```sql
 SELECT * from productos as p  WHERE p.precio > (SELECT AVG(precio) as precio_media FROM productos);
 ┌────┬─────────────────┬───────────┬────────┐
 │ id │     nombre      │ categoria │ precio │

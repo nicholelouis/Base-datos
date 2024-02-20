@@ -465,16 +465,30 @@ SELECT c.id, c.nombre, c.apellido1, max(p.total) FROM cliente as c LEFT JOIN ped
 
 --Devuelve cuál ha sido el pedido de máximo valor que se ha realizado cada año.
 
-
+SELECT strftime('%Y',fecha) as año, max(total) as maximo FROM pedido GROUP BY año;
 /**
-
+┌──────┬─────────┐
+│ año  │ maximo  │
+├──────┼─────────┤
+│ 2015 │ 5760.0  │
+│ 2016 │ 2480.4  │
+│ 2017 │ 3045.6  │
+│ 2019 │ 2389.23 │
+└──────┴─────────┘
 **/
 
 --Devuelve el número total de pedidos que se han realizado cada año.
 
-
+SELECT strftime('%Y',fecha) as año, count(id) as num_pedidos FROM pedido GROUP BY año;
 /**
-
+┌──────┬─────────────┐
+│ año  │ num_pedidos │
+├──────┼─────────────┤
+│ 2015 │ 2           │
+│ 2016 │ 5           │
+│ 2017 │ 6           │
+│ 2019 │ 3           │
+└──────┴─────────────┘
 **/
 
 --Devuelve un listado con todos los pedidos que ha realizado Adela Salas Díaz. (Sin utilizar INNER JOIN).

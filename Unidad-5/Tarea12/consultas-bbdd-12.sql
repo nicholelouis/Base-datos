@@ -370,6 +370,9 @@ SELECT max(categoria) as maximo, ciudad  FROM cliente GROUP BY ciudad ;
 --Calcula cuál es el máximo valor de los pedidos realizados durante el mismo día para cada uno de los clientes. Es decir, el mismo cliente puede haber realizado varios pedidos de diferentes cantidades el mismo día. Se pide que se calcule cuál es el pedido de máximo valor para cada uno de los días en los que un cliente ha realizado un pedido. Muestra el identificador del cliente, nombre, apellidos, la fecha y el valor de la cantidad.
 
 SELECT c.id, c.nombre, c.apellido1, p.fecha, max(p.total) FROM pedido as p JOIN cliente as c on c.id=p.id_cliente GROUP BY c.nombre;
+-- Correción
+SELECT c.id, c.nombre, c.apellido1, p.fecha, max(p.total) FROM pedido as p JOIN cliente as c on c.id=p.id_cliente GROUP BY p.fecha;
+
 /**
 ┌────┬────────┬───────────┬────────────┬──────────────┐
 │ id │ nombre │ apellido1 │   fecha    │ max(p.total) │
@@ -509,6 +512,9 @@ select p.* FROM pedido as p, cliente as c where p.id_cliente=c.id and c.nombre='
 --Devuelve el número de pedidos en los que ha participado el comercial Daniel Sáez Vega. (Sin utilizar INNER JOIN)
 
 select p.* FROM pedido as p, comercial as c where p.id_comercial=c.id and c.nombre='Daniel'and c.apellido1='Sáez' and c.apellido2='Vega';
+--Correción 
+select COUNT(p.id) as nuem_pedidos FROM pedido as p, comercial as c where p.id_comercial=c.id and c.nombre='Daniel'and c.apellido1='Sáez' and c.apellido2='Vega';
+
 /**
 ┌────┬────────┬────────────┬────────────┬──────────────┐
 │ id │ total  │   fecha    │ id_cliente │ id_comercial │

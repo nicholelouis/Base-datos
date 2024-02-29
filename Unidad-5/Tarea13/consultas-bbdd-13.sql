@@ -714,8 +714,19 @@ SELECT * FROM asignatura WHERE id_profesor is NULL;
 
 --Devuelve un listado con todos los departamentos que no han impartido asignaturas en ningún curso escolar.
 
-SELECT d.* FROM departamento as d JOIN profesor as p on d.id=p.id_departamento JOIN asignatura as a on p.id_profesor=a.id_profesor WHERE a.id_profesor is null;
+SELECT * FROM departamento WHERE id not in (SELECT d.id FROM departamento as d JOIN profesor as p on d.id=p.id_departamento JOIN asignatura as a on p.id_profesor=a.id_profesor);
 /**
-
+┌────┬─────────────────────┐
+│ id │       nombre        │
+├────┼─────────────────────┤
+│ 2  │ Matemáticas         │
+│ 3  │ Economía y Empresa  │
+│ 4  │ Educación           │
+│ 5  │ Agronomía           │
+│ 6  │ Química y Física    │
+│ 7  │ Filología           │
+│ 8  │ Derecho             │
+│ 9  │ Biología y Geología │
+└────┴─────────────────────┘
 **/
 

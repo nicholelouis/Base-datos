@@ -1,6 +1,8 @@
 # Migración y primero pasos en MySQL
 ## Tarea1
 
+Dada una BBDD en SQLite3 realiza la migración de esta y las siguientes consultas.
+
 ### Creación de base de datos
 
 ```sql
@@ -20,7 +22,7 @@ source Tarea1.sql;
 ```
 
 ### Dentro del archivo sql
-Creación de tablas e insercion de información
+Creación de tablas e insercion de información.
 
 ```sql
 CREATE TABLE IF NOT EXISTS usuarios (

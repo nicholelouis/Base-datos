@@ -656,6 +656,6 @@ select c.nombre, count(o.id_orden) from clientes as c left join ordenes as o on 
 
 - Mostrar todas las órdenes con sus clientes y productos, incluyendo las órdenes y productos que no tienen información.
 ```sql
-
+select p.*, o.*, c.* from ordenes as o FULL JOIN preductos as p on o.id_producto=p.id_producto join clientes as c on c.id_cliente=o.id_cliente;
 ```
 

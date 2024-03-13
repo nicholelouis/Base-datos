@@ -25,7 +25,7 @@ source Tarea3.sql;
 ```
 
 ### Dentro del archivo sql
-Creación de tablas e insercion de información.
+Creación de tablas e inserción de información.
 
 ```sql
 CREATE TABLE clientes (

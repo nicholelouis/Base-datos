@@ -1,7 +1,8 @@
 # Migración y primero pasos en MySQL
-## Tarea3
 
 ![img](https://github.com/nicholelouis/Base-datos/blob/main/img/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png?raw=true)
+
+## Tarea3
 
 Dada una BBDD en SQLite3 realiza la migración de esta y las siguientes consultas.
 

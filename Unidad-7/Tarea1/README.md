@@ -28,6 +28,8 @@ drop table if exists alumno;
 - Cree la tabla definiendo una clave primaria compuesta (año de inscripción y número de inscripción)
 ```sql
 CREATE DATABASE IF NOT EXISTS instituto;
+USE instituto;
+
 create table alumnos (
     -> num_inscripcion INT,
     -> anio_inscripcion INT,

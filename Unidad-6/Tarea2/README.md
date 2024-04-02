@@ -306,7 +306,7 @@ select * from productos order by precio desc;
 
 - Seleccionar todos los clientes y sus órdenes, incluso si no tienen órdenes
 ```sql
-select c.*, o.* from clientes as c join ordenes as o on c.id_cliente=o.id_cliente;
+select c.*, o.* from clientes as c left join ordenes as o on c.id_cliente=o.id_cliente;
 +------------+------------+---------------+----------+------------+-------------+----------+
 | id_cliente | nombre     | direccion     | id_orden | id_cliente | id_producto | cantidad |
 +------------+------------+---------------+----------+------------+-------------+----------+
@@ -510,7 +510,7 @@ select c.nombre, count(o.id_orden) from clientes as c join ordenes as o on c.id_
 | Cliente 20 |                 1 |
 +------------+-------------------+
 ```
-
+***************************************************
 - Mostrar todas las órdenes junto con el nombre del cliente y el nombre del producto
 ```sql
 select p.nombre, c.nombre from productos as p left join ordenes as o on o.id_producto=p.id_producto join clientes as c on c.id_cliente=o.id_cliente;
@@ -600,7 +600,7 @@ select o.*, c.nombre, p.nombre from ordenes as o left join productos as p on o.i
 
 - Mostrar todas las órdenes junto con el nombre del cliente y el nombre del producto, incluyendo las órdenes sin productos
 ```sql
-select o.*, p.*, c.* from ordenes as o JOIN productos as p on o.id_producto=p.id_producto left join clientes as c on c.id_cliente=o.id_cliente;
+select o.*, p.*, c.* from ordenes as o JOIN productos as p on o.id_producto=p.id_producto join clientes as c on c.id_cliente=o.id_cliente;
 +----------+------------+-------------+----------+-------------+-------------+--------+------------+------------+---------------+
 | id_orden | id_cliente | id_producto | cantidad | id_producto | nombre      | precio | id_cliente | nombre     | direccion     |
 +----------+------------+-------------+----------+-------------+-------------+--------+------------+------------+---------------+
@@ -659,6 +659,6 @@ select c.nombre, count(o.id_orden) from clientes as c left join ordenes as o on 
 
 - Mostrar todas las órdenes con sus clientes y productos, incluyendo las órdenes y productos que no tienen información.
 ```sql
-select p.*, o.*, c.* from ordenes as o FULL JOIN preductos as p on o.id_producto=p.id_producto join clientes as c on c.id_cliente=o.id_cliente;
+select * from ordenes as o left join from productos ;
 ```
 

@@ -4,7 +4,8 @@
   <img src="https://github.com/nicholelouis/Base-datos/blob/main/img/optimizacion-bd.png?raw=true" alt="Descripción de la imagen" width="300"/>
 </p>
 
-## Tarea 1 Trabaja con indices
+## Tarea 1 
+### Trabaja con indices
 
 Un instituto de enseñanza guarda los siguientes datos de sus alumnos:
 

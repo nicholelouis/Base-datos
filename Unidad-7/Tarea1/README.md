@@ -1,6 +1,6 @@
 # Optimización de Base de Datos
 
-![img](https://github.com/nicholelouis/Base-datos/blob/main/img/optimizacion-bd.png?raw=true)
+<img src="https://github.com/nicholelouis/Base-datos/blob/main/img/optimizacion-bd.png?raw=true" alt="Descripción de la imagen" width="200"/>
 
 ## Tarea 1 Trabaja con indices
 

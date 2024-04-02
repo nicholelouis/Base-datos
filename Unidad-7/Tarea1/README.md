@@ -1,6 +1,6 @@
 # Optimización de Base de Datos
 
-![img](https://github.com/nicholelouis/Base-datos/blob/main/img/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png?raw=true)
+![img](https://github.com/nicholelouis/Base-datos/blob/main/img/optimizacion-bd.png?raw=true)
 
 ## Tarea 1 Trabaja con indices
 

@@ -71,7 +71,7 @@ create unique index idx_tlf on cliente(telefono);
 ```sql
 drop index idx_ci_prov on cliente;
 
-mysql> drop index idx_doc on cliente;
+drop index idx_doc on cliente;
 
 drop index idx_tlf on cliente;
 

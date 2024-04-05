@@ -71,7 +71,7 @@ Records: 3586  Duplicates: 0  Warnings: 0
 
 - Con la cláusula DESCRIBE observa cuál es la situación de la tabla clonada, ¿Qué le pasa al índice y a la propiedad AUTO_INCREMENT?
 ```sql
-mysql> describe MOVIMIENTO;
+ describe MOVIMIENTO;
 +---------------+-------------+------+-----+---------+----------------+
 | Field         | Type        | Null | Key | Default | Extra          |
 +---------------+-------------+------+-----+---------+----------------+
@@ -81,7 +81,7 @@ mysql> describe MOVIMIENTO;
 | cantidad      | int         | NO   |     | NULL    |                |
 +---------------+-------------+------+-----+---------+----------------+
 
-mysql> describe MOVIMIENTO_BIS;
+ describe MOVIMIENTO_BIS;
 +---------------+-------------+------+-----+---------+-------+
 | Field         | Type        | Null | Key | Default | Extra |
 +---------------+-------------+------+-----+---------+-------+
@@ -104,7 +104,7 @@ DESCRIBE select * from MOVIMIENTO_BIS where identificador=3;
 +----+-------------+----------------+------------+------+----------------------+----------------------+---------+-------+------+----------+-------+
 1 row in set, 1 warning (0,00 sec)
 
-mysql> DESCRIBE select * from MOVIMIENTO where identificador=3;
+ DESCRIBE select * from MOVIMIENTO where identificador=3;
 +----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
 | id | select_type | table      | partitions | type  | possible_keys | key     | key_len | ref   | rows | filtered | Extra |
 +----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
@@ -118,14 +118,14 @@ CREATE INDEX IX_FECHA_BIS on MOVIMIENTO(fecha);
 Query OK, 0 rows affected (0,14 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> CREATE INDEX IX_IDENTIFICADOR_BIS on MOVIMIENTO(identificador);
+ CREATE INDEX IX_IDENTIFICADOR_BIS on MOVIMIENTO(identificador);
 Query OK, 0 rows affected (0,07 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
 - Analiza el plan de ejecución de las siguientes consultas y observa la diferencia
 ```sql
-mysql> DESCRIBE select * from MOVIMIENTO_BIS where identificador=3;
+ DESCRIBE select * from MOVIMIENTO_BIS where identificador=3;
 +----+-------------+----------------+------------+------+----------------------+----------------------+---------+-------+------+----------+-------+
 | id | select_type | table          | partitions | type | possible_keys        | key                  | key_len | ref   | rows | filtered | Extra |
 +----+-------------+----------------+------------+------+----------------------+----------------------+---------+-------+------+----------+-------+
@@ -133,7 +133,7 @@ mysql> DESCRIBE select * from MOVIMIENTO_BIS where identificador=3;
 +----+-------------+----------------+------------+------+----------------------+----------------------+---------+-------+------+----------+-------+
 1 row in set, 1 warning (0,00 sec)
 
-mysql> DESCRIBE select * from MOVIMIENTO where identificador=3;
+ DESCRIBE select * from MOVIMIENTO where identificador=3;
 +----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
 | id | select_type | table      | partitions | type  | possible_keys | key     | key_len | ref   | rows | filtered | Extra |
 +----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
@@ -146,7 +146,7 @@ En la Consulta 1, donde pedimos todos los campos de la tabla MOVIMIENTO filtramo
 
 - Analiza el plan de ejecución de las siguientes consultas y observa la diferencia:
 ```sql
-mysql> explain SELECT fecha FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 and 01/03/2012;
+ explain SELECT fecha FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 and 01/03/2012;
 +----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+
 | id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
 +----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+
@@ -154,7 +154,7 @@ mysql> explain SELECT fecha FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 and 0
 +----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+
 1 row in set, 1 warning (0,00 sec)
 
-mysql> explain SELECT * FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 and 01/03/2012;
+ explain SELECT * FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 and 01/03/2012;
 +----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+
 | id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
 +----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+
@@ -172,7 +172,7 @@ CREATE INDEX IX_FECHA_BIS on MOVIMIENTO(fecha);
 Query OK, 0 rows affected (0,14 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> CREATE INDEX IX_IDENTIFICADOR_BIS on MOVIMIENTO(identificador);
+ CREATE INDEX IX_IDENTIFICADOR_BIS on MOVIMIENTO(identificador);
 Query OK, 0 rows affected (0,07 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
@@ -191,7 +191,7 @@ DESCRIBE SELECT fecha FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 AND 01/03/2
 +----+-------------+------------+------------+------+---------------+----------+---------+-------+------+----------+-------------+
 1 row in set, 1 warning (0,00 sec)
 
-mysql> DESCRIBE SELECT * FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 AND 01/03/2012;
+ DESCRIBE SELECT * FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 AND 01/03/2012;
 +----+-------------+------------+------------+------+---------------+----------+---------+-------+------+----------+-------+
 | id | select_type | table      | partitions | type | possible_keys | key      | key_len | ref   | rows | filtered | Extra |
 +----+-------------+------------+------------+------+---------------+----------+---------+-------+------+----------+-------+
@@ -199,7 +199,7 @@ mysql> DESCRIBE SELECT * FROM MOVIMIENTO WHERE fecha BETWEEN 01/01/2012 AND 01/0
 +----+-------------+------------+------------+------+---------------+----------+---------+-------+------+----------+-------+
 1 row in set, 1 warning (0,00 sec)
 
-mysql> DESCRIBE SELECT fecha FROM MOVIMIENTO_BIS WHERE fecha BETWEEN 01/01/2012 AND 01/03/2012;
+ DESCRIBE SELECT fecha FROM MOVIMIENTO_BIS WHERE fecha BETWEEN 01/01/2012 AND 01/03/2012;
 +----+-------------+----------------+------------+------+---------------+--------------+---------+-------+------+----------+-------------+
 | id | select_type | table          | partitions | type | possible_keys | key          | key_len | ref   | rows | filtered | Extra       |
 +----+-------------+----------------+------------+------+---------------+--------------+---------+-------+------+----------+-------------+
@@ -207,7 +207,7 @@ mysql> DESCRIBE SELECT fecha FROM MOVIMIENTO_BIS WHERE fecha BETWEEN 01/01/2012 
 +----+-------------+----------------+------------+------+---------------+--------------+---------+-------+------+----------+-------------+
 1 row in set, 1 warning (0,00 sec)
 
-mysql> DESCRIBE SELECT * FROM MOVIMIENTO_BIS WHERE fecha BETWEEN 01/01/2012 AND 01/03/2012;
+ DESCRIBE SELECT * FROM MOVIMIENTO_BIS WHERE fecha BETWEEN 01/01/2012 AND 01/03/2012;
 +----+-------------+----------------+------------+------+---------------+--------------+---------+-------+------+----------+-------+
 | id | select_type | table          | partitions | type | possible_keys | key          | key_len | ref   | rows | filtered | Extra |
 +----+-------------+----------------+------------+------+---------------+--------------+---------+-------+------+----------+-------+

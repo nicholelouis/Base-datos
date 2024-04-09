@@ -711,194 +711,195 @@ etc...
   ```
 
   - Vista 2
-```sql
-    create view clientes_actv AS 
-    select c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS num_alquileres FROM customer c join rental r on c.customer_id = r.customer_id 
-    group by c.customer_id, c.first_name, c.last_name 
-    order by num_alquileres desc;
-Query OK, 0 rows affected (0,02 sec)
+    ```sql
+        create view clientes_actv AS 
+        select c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS num_alquileres FROM customer c join rental r on c.customer_id = r.customer_id 
+        group by c.customer_id, c.first_name, c.last_name 
+        order by num_alquileres desc;
+    Query OK, 0 rows affected (0,02 sec)
 
-  select * from clientes_actv;
-+-------------+-------------+--------------+----------------+
-| customer_id | first_name  | last_name    | num_alquileres |
-+-------------+-------------+--------------+----------------+
-|         148 | ELEANOR     | HUNT         |             46 |
-|         526 | KARL        | SEAL         |             45 |
-|         144 | CLARA       | SHAW         |             42 |
-|         236 | MARCIA      | DEAN         |             42 |
-|          75 | TAMMY       | SANDERS      |             41 |
-|         197 | SUE         | PETERS       |             40 |
-|         469 | WESLEY      | BULL         |             40 |
-|         137 | RHONDA      | KENNEDY      |             39 |
-|         178 | MARION      | SNYDER       |             39 |
-|         468 | TIM         | CARY         |             39 |
-|           5 | ELIZABETH   | BROWN        |             38 |
-|         295 | DAISY       | BATES        |             38 |
-|         410 | CURTIS      | IRBY         |             38 |
-|         459 | TOMMY       | COLLAZO      |             38 |
-|         176 | JUNE        | CARROLL      |             37 |
-|         198 | ELSIE       | KELLEY       |             37 |
-|         257 | MARSHA      | DOUGLAS      |             37 |
-|         366 | BRANDON     | HUEY         |             37 |
-|          29 | ANGELA      | HERNANDEZ    |             36 |
-|         267 | MARGIE      | WADE         |             36 |
-|         348 | ROGER       | QUINTANILLA  |             36 |
-|         354 | JUSTIN      | NGO          |             36 |
-|         380 | RUSSELL     | BRINSON      |             36 |
-|         439 | ALEXANDER   | FENNELL      |             36 |
-|          21 | MICHELLE    | CLARK        |             35 |
-|          50 | DIANE       | COLLINS      |             35 |
-|          91 | LOIS        | BUTLER       |             35 |
-|         196 | ALMA        | AUSTIN       |             35 |
-|         204 | ROSEMARY    | SCHMIDT      |             35 |
-|         273 | PRISCILLA   | LOWE         |             35 |
-|         274 | NAOMI       | JENNINGS     |             35 |
-|         368 | HARRY       | ARCE         |             35 |
-|         371 | BILLY       | POULIN       |             35 |
-|         373 | LOUIS       | LEONE        |             35 |
-|         381 | BOBBY       | BOUDREAU     |             35 |
-|         403 | MIKE        | WAY          |             35 |
-|         506 | LESLIE      | SEWARD       |             35 |
-+-------------+-------------+--------------+----------------+
-etc...
-```
+    select * from clientes_actv;
+    +-------------+-------------+--------------+----------------+
+    | customer_id | first_name  | last_name    | num_alquileres |
+    +-------------+-------------+--------------+----------------+
+    |         148 | ELEANOR     | HUNT         |             46 |
+    |         526 | KARL        | SEAL         |             45 |
+    |         144 | CLARA       | SHAW         |             42 |
+    |         236 | MARCIA      | DEAN         |             42 |
+    |          75 | TAMMY       | SANDERS      |             41 |
+    |         197 | SUE         | PETERS       |             40 |
+    |         469 | WESLEY      | BULL         |             40 |
+    |         137 | RHONDA      | KENNEDY      |             39 |
+    |         178 | MARION      | SNYDER       |             39 |
+    |         468 | TIM         | CARY         |             39 |
+    |           5 | ELIZABETH   | BROWN        |             38 |
+    |         295 | DAISY       | BATES        |             38 |
+    |         410 | CURTIS      | IRBY         |             38 |
+    |         459 | TOMMY       | COLLAZO      |             38 |
+    |         176 | JUNE        | CARROLL      |             37 |
+    |         198 | ELSIE       | KELLEY       |             37 |
+    |         257 | MARSHA      | DOUGLAS      |             37 |
+    |         366 | BRANDON     | HUEY         |             37 |
+    |          29 | ANGELA      | HERNANDEZ    |             36 |
+    |         267 | MARGIE      | WADE         |             36 |
+    |         348 | ROGER       | QUINTANILLA  |             36 |
+    |         354 | JUSTIN      | NGO          |             36 |
+    |         380 | RUSSELL     | BRINSON      |             36 |
+    |         439 | ALEXANDER   | FENNELL      |             36 |
+    |          21 | MICHELLE    | CLARK        |             35 |
+    |          50 | DIANE       | COLLINS      |             35 |
+    |          91 | LOIS        | BUTLER       |             35 |
+    |         196 | ALMA        | AUSTIN       |             35 |
+    |         204 | ROSEMARY    | SCHMIDT      |             35 |
+    |         273 | PRISCILLA   | LOWE         |             35 |
+    |         274 | NAOMI       | JENNINGS     |             35 |
+    |         368 | HARRY       | ARCE         |             35 |
+    |         371 | BILLY       | POULIN       |             35 |
+    |         373 | LOUIS       | LEONE        |             35 |
+    |         381 | BOBBY       | BOUDREAU     |             35 |
+    |         403 | MIKE        | WAY          |             35 |
+    |         506 | LESLIE      | SEWARD       |             35 |
+    +-------------+-------------+--------------+----------------+
+    etc...
+    ```
 
-  - Vista 3
-```sql
-create view film_per_actor as select  a.actor_id, a.first_name, a.last_name, f.film_id, f.title from actor a 
-join film_actor fa ON a.actor_id = fa.actor_id 
-join film f ON fa.film_id = f.film_id;
-Query OK, 0 rows affected (0,02 sec)
+    - Vista 3
+    ```sql
+    create view film_per_actor as select  a.actor_id, a.first_name, a.last_name, f.film_id, f.title from actor a 
+    join film_actor fa ON a.actor_id = fa.actor_id 
+    join film f ON fa.film_id = f.film_id;
+    Query OK, 0 rows affected (0,02 sec)
 
-select * from film_per_actor;
-+----------+-------------+--------------+---------+-----------------------------+
-| actor_id | first_name  | last_name    | film_id | title                       |
-+----------+-------------+--------------+---------+-----------------------------+
-|        1 | PENELOPE    | GUINESS      |       1 | ACADEMY DINOSAUR            |
-|        1 | PENELOPE    | GUINESS      |      23 | ANACONDA CONFESSIONS        |
-|        1 | PENELOPE    | GUINESS      |      25 | ANGELS LIFE                 |
-|        1 | PENELOPE    | GUINESS      |     106 | BULWORTH COMMANDMENTS       |
-|        1 | PENELOPE    | GUINESS      |     140 | CHEAPER CLYDE               |
-|        1 | PENELOPE    | GUINESS      |     166 | COLOR PHILADELPHIA          |
-|        1 | PENELOPE    | GUINESS      |     277 | ELEPHANT TROJAN             |
-|        1 | PENELOPE    | GUINESS      |     361 | GLEAMING JAWBREAKER         |
-|        1 | PENELOPE    | GUINESS      |     438 | HUMAN GRAFFITI              |
-|        1 | PENELOPE    | GUINESS      |     499 | KING EVOLUTION              |
-|        1 | PENELOPE    | GUINESS      |     506 | LADY STAGE                  |
-|        1 | PENELOPE    | GUINESS      |     509 | LANGUAGE COWBOY             |
-|        1 | PENELOPE    | GUINESS      |     605 | MULHOLLAND BEAST            |
-|        1 | PENELOPE    | GUINESS      |     635 | OKLAHOMA JUMANJI            |
-|        1 | PENELOPE    | GUINESS      |     749 | RULES HUMAN                 |
-|        1 | PENELOPE    | GUINESS      |     832 | SPLASH GUMP                 |
-|        1 | PENELOPE    | GUINESS      |     939 | VERTIGO NORTHWEST           |
-|        1 | PENELOPE    | GUINESS      |     970 | WESTWARD SEABISCUIT         |
-|        1 | PENELOPE    | GUINESS      |     980 | WIZARD COLDBLOODED          |
-|        2 | NICK        | WAHLBERG     |       3 | ADAPTATION HOLES            |
-|        2 | NICK        | WAHLBERG     |      31 | APACHE DIVINE               |
-|        2 | NICK        | WAHLBERG     |      47 | BABY HALL                   |
-|        2 | NICK        | WAHLBERG     |     105 | BULL SHAWSHANK              |
-|        2 | NICK        | WAHLBERG     |     132 | CHAINSAW UPTOWN             |
-|        2 | NICK        | WAHLBERG     |     145 | CHISUM BEHAVIOR             |
-|        2 | NICK        | WAHLBERG     |     226 | DESTINY SATURDAY            |
-|        2 | NICK        | WAHLBERG     |     249 | DRACULA CRYSTAL             |
-|        2 | NICK        | WAHLBERG     |     314 | FIGHT JAWBREAKER            |
-|        2 | NICK        | WAHLBERG     |     321 | FLASH WARS                  |
-|        2 | NICK        | WAHLBERG     |     357 | GILBERT PELICAN             |
-|        2 | NICK        | WAHLBERG     |     369 | GOODFELLAS SALUTE           |
-|        2 | NICK        | WAHLBERG     |     399 | HAPPINESS UNITED            |
-|        2 | NICK        | WAHLBERG     |     458 | INDIAN LOVE                 |
-|        2 | NICK        | WAHLBERG     |     481 | JEKYLL FROGMEN              |
-|        2 | NICK        | WAHLBERG     |     485 | JERSEY SASSY                |
-|        2 | NICK        | WAHLBERG     |     518 | LIAISONS SWEET              |
-|        2 | NICK        | WAHLBERG     |     540 | LUCKY FLYING                |
-+----------+-------------+--------------+---------+-----------------------------+
-etc...
-```
-    - Vista 4
-```sql
-    create view peliculas_populares_por_categoria as 
-    select c.name, f.title, count(r.rental_id) AS num_alquileres from film f 
-    join film_category fc on f.film_id = fc.film_id 
-    join category c on fc.category_id = c.category_id 
-    join inventory i on f.film_id = i.film_id 
-    join rental r on i.inventory_id = r.inventory_id 
-    group by c.name, f.title;
+    select * from film_per_actor;
+    +----------+-------------+--------------+---------+-----------------------------+
+    | actor_id | first_name  | last_name    | film_id | title                       |
+    +----------+-------------+--------------+---------+-----------------------------+
+    |        1 | PENELOPE    | GUINESS      |       1 | ACADEMY DINOSAUR            |
+    |        1 | PENELOPE    | GUINESS      |      23 | ANACONDA CONFESSIONS        |
+    |        1 | PENELOPE    | GUINESS      |      25 | ANGELS LIFE                 |
+    |        1 | PENELOPE    | GUINESS      |     106 | BULWORTH COMMANDMENTS       |
+    |        1 | PENELOPE    | GUINESS      |     140 | CHEAPER CLYDE               |
+    |        1 | PENELOPE    | GUINESS      |     166 | COLOR PHILADELPHIA          |
+    |        1 | PENELOPE    | GUINESS      |     277 | ELEPHANT TROJAN             |
+    |        1 | PENELOPE    | GUINESS      |     361 | GLEAMING JAWBREAKER         |
+    |        1 | PENELOPE    | GUINESS      |     438 | HUMAN GRAFFITI              |
+    |        1 | PENELOPE    | GUINESS      |     499 | KING EVOLUTION              |
+    |        1 | PENELOPE    | GUINESS      |     506 | LADY STAGE                  |
+    |        1 | PENELOPE    | GUINESS      |     509 | LANGUAGE COWBOY             |
+    |        1 | PENELOPE    | GUINESS      |     605 | MULHOLLAND BEAST            |
+    |        1 | PENELOPE    | GUINESS      |     635 | OKLAHOMA JUMANJI            |
+    |        1 | PENELOPE    | GUINESS      |     749 | RULES HUMAN                 |
+    |        1 | PENELOPE    | GUINESS      |     832 | SPLASH GUMP                 |
+    |        1 | PENELOPE    | GUINESS      |     939 | VERTIGO NORTHWEST           |
+    |        1 | PENELOPE    | GUINESS      |     970 | WESTWARD SEABISCUIT         |
+    |        1 | PENELOPE    | GUINESS      |     980 | WIZARD COLDBLOODED          |
+    |        2 | NICK        | WAHLBERG     |       3 | ADAPTATION HOLES            |
+    |        2 | NICK        | WAHLBERG     |      31 | APACHE DIVINE               |
+    |        2 | NICK        | WAHLBERG     |      47 | BABY HALL                   |
+    |        2 | NICK        | WAHLBERG     |     105 | BULL SHAWSHANK              |
+    |        2 | NICK        | WAHLBERG     |     132 | CHAINSAW UPTOWN             |
+    |        2 | NICK        | WAHLBERG     |     145 | CHISUM BEHAVIOR             |
+    |        2 | NICK        | WAHLBERG     |     226 | DESTINY SATURDAY            |
+    |        2 | NICK        | WAHLBERG     |     249 | DRACULA CRYSTAL             |
+    |        2 | NICK        | WAHLBERG     |     314 | FIGHT JAWBREAKER            |
+    |        2 | NICK        | WAHLBERG     |     321 | FLASH WARS                  |
+    |        2 | NICK        | WAHLBERG     |     357 | GILBERT PELICAN             |
+    |        2 | NICK        | WAHLBERG     |     369 | GOODFELLAS SALUTE           |
+    |        2 | NICK        | WAHLBERG     |     399 | HAPPINESS UNITED            |
+    |        2 | NICK        | WAHLBERG     |     458 | INDIAN LOVE                 |
+    |        2 | NICK        | WAHLBERG     |     481 | JEKYLL FROGMEN              |
+    |        2 | NICK        | WAHLBERG     |     485 | JERSEY SASSY                |
+    |        2 | NICK        | WAHLBERG     |     518 | LIAISONS SWEET              |
+    |        2 | NICK        | WAHLBERG     |     540 | LUCKY FLYING                |
+    +----------+-------------+--------------+---------+-----------------------------+
+    etc...
+    ```
 
-select * from peliculas_populares_por_categoria;
-+-------------+-----------------------------+----------------+
-| name        | title                       | num_alquileres |
-+-------------+-----------------------------+----------------+
-| Action      | AMADEUS HOLY                |             21 |
-| Action      | AMERICAN CIRCUS             |             22 |
-| Action      | ANTITRUST TOMATOES          |             10 |
-| Action      | BAREFOOT MANCHURIAN         |             18 |
-| Action      | BERETS AGENT                |             21 |
-| Action      | BRIDE INTRIGUE              |             19 |
-| Action      | BULL SHAWSHANK              |             16 |
-| Action      | CADDYSHACK JEDI             |             16 |
-| Action      | CAMPUS REMEMBER             |             19 |
-| Action      | CASUALTIES ENCINO           |              9 |
-| Action      | CELEBRITY HORN              |             24 |
-| Action      | CLUELESS BUCKET             |             25 |
-| Action      | CROW GREASE                 |             12 |
-| Action      | DANCES NONE                 |             14 |
-| Action      | DARKO DORADO                |             11 |
-| Action      | DARN FORRESTER              |             18 |
-| Action      | DEVIL DESIRE                |             15 |
-| Action      | DRAGON SQUAD                |             11 |
-| Action      | DREAM PICKUP                |             22 |
-| Action      | DRIFTER COMMANDMENTS        |             24 |
-| Action      | EASY GLADIATOR              |             23 |
-| Action      | ENTRAPMENT SATISFACTION     |             15 |
-| Action      | EXCITEMENT EVE              |             21 |
-| Action      | FANTASY TROOPERS            |             26 |
-| Action      | FOOL MOCKINGBIRD            |             23 |
-| Action      | FORREST SONS                |             18 |
-| Action      | GLASS DYING                 |             14 |
-| Action      | GOSFORD DONNIE              |              8 |
-+-------------+-----------------------------+----------------+
-etc...
-```
+        - Vista 4
+    ```sql
+        create view peliculas_populares_por_categoria as 
+        select c.name, f.title, count(r.rental_id) AS num_alquileres from film f 
+        join film_category fc on f.film_id = fc.film_id 
+        join category c on fc.category_id = c.category_id 
+        join inventory i on f.film_id = i.film_id 
+        join rental r on i.inventory_id = r.inventory_id 
+        group by c.name, f.title;
 
-    - Vista 5
-```sql
-create view ingresos_por_pelicula as 
-select f.film_id, f.title, COUNT(r.rental_id) as num_alquileres, SUM(p.amount) AS ingreso_total from film f 
-left join inventory i on f.film_id = i.film_id 
-left join rental r on i.inventory_id = r.inventory_id 
-left join payment p on r.rental_id = p.rental_id 
-group by f.film_id, f.title;
+    select * from peliculas_populares_por_categoria;
+    +-------------+-----------------------------+----------------+
+    | name        | title                       | num_alquileres |
+    +-------------+-----------------------------+----------------+
+    | Action      | AMADEUS HOLY                |             21 |
+    | Action      | AMERICAN CIRCUS             |             22 |
+    | Action      | ANTITRUST TOMATOES          |             10 |
+    | Action      | BAREFOOT MANCHURIAN         |             18 |
+    | Action      | BERETS AGENT                |             21 |
+    | Action      | BRIDE INTRIGUE              |             19 |
+    | Action      | BULL SHAWSHANK              |             16 |
+    | Action      | CADDYSHACK JEDI             |             16 |
+    | Action      | CAMPUS REMEMBER             |             19 |
+    | Action      | CASUALTIES ENCINO           |              9 |
+    | Action      | CELEBRITY HORN              |             24 |
+    | Action      | CLUELESS BUCKET             |             25 |
+    | Action      | CROW GREASE                 |             12 |
+    | Action      | DANCES NONE                 |             14 |
+    | Action      | DARKO DORADO                |             11 |
+    | Action      | DARN FORRESTER              |             18 |
+    | Action      | DEVIL DESIRE                |             15 |
+    | Action      | DRAGON SQUAD                |             11 |
+    | Action      | DREAM PICKUP                |             22 |
+    | Action      | DRIFTER COMMANDMENTS        |             24 |
+    | Action      | EASY GLADIATOR              |             23 |
+    | Action      | ENTRAPMENT SATISFACTION     |             15 |
+    | Action      | EXCITEMENT EVE              |             21 |
+    | Action      | FANTASY TROOPERS            |             26 |
+    | Action      | FOOL MOCKINGBIRD            |             23 |
+    | Action      | FORREST SONS                |             18 |
+    | Action      | GLASS DYING                 |             14 |
+    | Action      | GOSFORD DONNIE              |              8 |
+    +-------------+-----------------------------+----------------+
+    etc...
+    ```
 
-select * from ingresos_por_pelicula;
-+---------+-----------------------------+----------------+---------------+
-| film_id | title                       | num_alquileres | ingreso_total |
-+---------+-----------------------------+----------------+---------------+
-|       1 | ACADEMY DINOSAUR            |             23 |         36.77 |
-|       2 | ACE GOLDFINGER              |              7 |         52.93 |
-|       3 | ADAPTATION HOLES            |             12 |         37.88 |
-|       4 | AFFAIR PREJUDICE            |             23 |         91.77 |
-|       5 | AFRICAN EGG                 |             12 |         51.88 |
-|       6 | AGENT TRUMAN                |             21 |        126.79 |
-|       7 | AIRPLANE SIERRA             |             15 |         82.85 |
-|       8 | AIRPORT POLLOCK             |             18 |        102.82 |
-|       9 | ALABAMA DEVIL               |             12 |         71.88 |
-|      10 | ALADDIN CALENDAR            |             23 |        131.77 |
-|      11 | ALAMO VIDEOTAPE             |             24 |         35.76 |
-|      12 | ALASKA PHANTOM              |             26 |         44.74 |
-|      13 | ALI FOREVER                 |              9 |         54.91 |
-|      14 | ALICE FANTASIA              |              0 |          NULL |
-|      15 | ALIEN CENTER                |             22 |         90.78 |
-|      16 | ALLEY EVOLUTION             |             14 |         52.86 |
-|      17 | ALONE TRIP                  |             18 |         62.82 |
-|      18 | ALTER VICTORY               |             22 |         32.78 |
-|      19 | AMADEUS HOLY                |             21 |         33.79 |
-|      20 | AMELIE HELLFIGHTERS         |             10 |         67.90 |
-|      21 | AMERICAN CIRCUS             |             22 |        167.78 |
-|      22 | AMISTAD MIDSUMMER           |             21 |         70.79 |
-|      23 | ANACONDA CONFESSIONS        |             21 |         60.79 |
-|      24 | ANALYZE HOOSIERS            |             14 |         55.86 |
-+---------+-----------------------------+----------------+---------------+
-etc...
-```
+        - Vista 5
+    ```sql
+    create view ingresos_por_pelicula as 
+    select f.film_id, f.title, COUNT(r.rental_id) as num_alquileres, SUM(p.amount) AS ingreso_total from film f 
+    left join inventory i on f.film_id = i.film_id 
+    left join rental r on i.inventory_id = r.inventory_id 
+    left join payment p on r.rental_id = p.rental_id 
+    group by f.film_id, f.title;
+
+    select * from ingresos_por_pelicula;
+    +---------+-----------------------------+----------------+---------------+
+    | film_id | title                       | num_alquileres | ingreso_total |
+    +---------+-----------------------------+----------------+---------------+
+    |       1 | ACADEMY DINOSAUR            |             23 |         36.77 |
+    |       2 | ACE GOLDFINGER              |              7 |         52.93 |
+    |       3 | ADAPTATION HOLES            |             12 |         37.88 |
+    |       4 | AFFAIR PREJUDICE            |             23 |         91.77 |
+    |       5 | AFRICAN EGG                 |             12 |         51.88 |
+    |       6 | AGENT TRUMAN                |             21 |        126.79 |
+    |       7 | AIRPLANE SIERRA             |             15 |         82.85 |
+    |       8 | AIRPORT POLLOCK             |             18 |        102.82 |
+    |       9 | ALABAMA DEVIL               |             12 |         71.88 |
+    |      10 | ALADDIN CALENDAR            |             23 |        131.77 |
+    |      11 | ALAMO VIDEOTAPE             |             24 |         35.76 |
+    |      12 | ALASKA PHANTOM              |             26 |         44.74 |
+    |      13 | ALI FOREVER                 |              9 |         54.91 |
+    |      14 | ALICE FANTASIA              |              0 |          NULL |
+    |      15 | ALIEN CENTER                |             22 |         90.78 |
+    |      16 | ALLEY EVOLUTION             |             14 |         52.86 |
+    |      17 | ALONE TRIP                  |             18 |         62.82 |
+    |      18 | ALTER VICTORY               |             22 |         32.78 |
+    |      19 | AMADEUS HOLY                |             21 |         33.79 |
+    |      20 | AMELIE HELLFIGHTERS         |             10 |         67.90 |
+    |      21 | AMERICAN CIRCUS             |             22 |        167.78 |
+    |      22 | AMISTAD MIDSUMMER           |             21 |         70.79 |
+    |      23 | ANACONDA CONFESSIONS        |             21 |         60.79 |
+    |      24 | ANALYZE HOOSIERS            |             14 |         55.86 |
+    +---------+-----------------------------+----------------+---------------+
+    etc...
+    ```
 ## Refecrencias
 [Sakila Database](https://dev.mysql.com/doc/sakila/en/sakila-introduction.html)

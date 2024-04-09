@@ -568,8 +568,313 @@ GROUP BY film.film_id, category.name;
 Conociendo es estos momentos ya la BBDD, se pide:
 
 - Muestra el resultado de la consulta de las vistas que se proporcionan.
+```sql
+select * from customer_list;
++-----+-----------------------+----------------------------------------+----------+--------------+----------------------------+---------------------------------------+--------+-----+
+| ID  | name                  | address                                | zip code | phone        | city                       | country                               | notes  | SID |
++-----+-----------------------+----------------------------------------+----------+--------------+----------------------------+---------------------------------------+--------+-----+
+|   1 | MARY SMITH            | 1913 Hanoi Way                         | 35200    | 28303384290  | Sasebo                     | Japan                                 | active |   1 |
+|   2 | PATRICIA JOHNSON      | 1121 Loja Avenue                       | 17886    | 838635286649 | San Bernardino             | United States                         | active |   1 |
+|   3 | LINDA WILLIAMS        | 692 Joliet Street                      | 83579    | 448477190408 | Athenai                    | Greece                                | active |   1 |
+|   4 | BARBARA JONES         | 1566 Inegöl Manor                      | 53561    | 705814003527 | Myingyan                   | Myanmar                               | active |   2 |
+|   5 | ELIZABETH BROWN       | 53 Idfu Parkway                        | 42399    | 10655648674  | Nantou                     | Taiwan                                | active |   1 |
+|   6 | JENNIFER DAVIS        | 1795 Santiago de Compostela Way        | 18743    | 860452626434 | Laredo                     | United States                         | active |   2 |
+|   7 | MARIA MILLER          | 900 Santiago de Compostela Parkway     | 93896    | 716571220373 | Kragujevac                 | Yugoslavia                            | active |   1 |
+|   8 | SUSAN WILSON          | 478 Joliet Way                         | 77948    | 657282285970 | Hamilton                   | New Zealand                           | active |   2 |
+|   9 | MARGARET MOORE        | 613 Korolev Drive                      | 45844    | 380657522649 | Masqat                     | Oman                                  | active |   2 |
+|  10 | DOROTHY TAYLOR        | 1531 Salé Drive                        | 53628    | 648856936185 | Esfahan                    | Iran                                  | active |   1 |
+|  11 | LISA ANDERSON         | 1542 Tarlac Parkway                    | 1027     | 635297277345 | Sagamihara                 | Japan                                 | active |   2 |
+|  12 | NANCY THOMAS          | 808 Bhopal Manor                       | 10672    | 465887807014 | Yamuna Nagar               | India                                 | active |   1 |
+|  13 | KAREN JACKSON         | 270 Amroha Parkway                     | 29610    | 695479687538 | Osmaniye                   | Turkey                                | active |   2 |
+|  14 | BETTY WHITE           | 770 Bydgoszcz Avenue                   | 16266    | 517338314235 | Citrus Heights             | United States                         | active |   2 |
+|  15 | HELEN HARRIS          | 419 Iligan Lane                        | 72878    | 990911107354 | Bhopal                     | India                                 | active |   1 |
+|  16 | SANDRA MARTIN         | 360 Toulouse Parkway                   | 54308    | 949312333307 | Southend-on-Sea            | United Kingdom                        |        |   2 |
+|  17 | DONNA THOMPSON        | 270 Toulon Boulevard                   | 81766    | 407752414682 | Elista                     | Russian Federation                    | active |   1 |
+|  18 | CAROL GARCIA          | 320 Brest Avenue                       | 43331    | 747791594069 | Kaduna                     | Nigeria                               | active |   2 |
+|  19 | RUTH MARTINEZ         | 1417 Lancaster Avenue                  | 72192    | 272572357893 | Kimberley                  | South Africa                          | active |   1 |
+|  20 | SHARON ROBINSON       | 1688 Okara Way                         | 21954    | 144453869132 | Mardan                     | Pakistan                              | active |   2 |
+|  21 | MICHELLE CLARK        | 262 A Coruña (La Coruña) Parkway       | 34418    | 892775750063 | Tangail                    | Bangladesh                            | active |   1 |
+|  22 | LAURA RODRIGUEZ       | 28 Charlotte Amalie Street             | 37551    | 161968374323 | Salé                       | Morocco                               | active |   1 |
+|  23 | SARAH LEWIS           | 1780 Hino Boulevard                    | 7716     | 902731229323 | Liepaja                    | Latvia                                | active |   2 |
+|  24 | KIMBERLY LEE          | 96 Tafuna Way                          | 99865    | 934730187245 | Córdoba                    | Argentina                             | active |   2 |
+|  25 | DEBORAH WALKER        | 934 San Felipe de Puerto Plata Street  | 99780    | 196495945706 | Shikarpur                  | Pakistan                              | active |   1 |
+|  26 | JESSICA HALL          | 18 Duisburg Boulevard                  | 58327    | 998009777982 | Città del Vaticano         | Holy See (Vatican City State)         | active |   2 |
+|  27 | SHIRLEY ALLEN         | 217 Botshabelo Place                   | 49521    | 665356572025 | Davao                      | Philippines                           | active |   2 |
+|  28 | CYNTHIA YOUNG         | 1425 Shikarpur Manor                   | 65599    | 678220867005 | Munger (Monghyr)           | India                                 | active |   1 |
+|  29 | ANGELA HERNANDEZ      | 786 Aurora Avenue                      | 65750    | 18461860151  | Shimonoseki                | Japan                                 | active |   2 |
+|  30 | MELISSA KING          | 1668 Anápolis Street                   | 50199    | 525255540978 | Lungtan                    | Taiwan                                | active |   1 |
+|  31 | BRENDA WRIGHT         | 33 Gorontalo Way                       | 30348    | 745994947458 | Kamarhati                  | India                                 | active |   2 |
+|  32 | AMY LOPEZ             | 176 Mandaluyong Place                  | 65213    | 627705991774 | Jhansi                     | India                                 | active |   1 |
+|  33 | ANNA HILL             | 127 Purnea (Purnia) Manor              | 79388    | 911872220378 | Alessandria                | Italy                                 | active |   2 |
+|  34 | REBECCA SCOTT         | 61 Tama Street                         | 94065    | 708403338270 | Kurashiki                  | Japan                                 | active |   2 |
+|  35 | VIRGINIA GREEN        | 391 Callao Drive                       | 34021    | 440512153169 | Toulouse                   | France                                | active |   2 |
+|  36 | KATHLEEN ADAMS        | 334 Munger (Monghyr) Lane              | 38145    | 481183273622 | Arak                       | Iran                                  | active |   2 |
+|  37 | PAMELA BAKER          | 1440 Fukuyama Loop                     | 47929    | 912257250465 | Nanyang                    | China                                 | active |   1 |
+|  38 | MARTHA GONZALEZ       | 269 Cam Ranh Parkway                   | 34689    | 489783829737 | Chisinau                   | Moldova                               | active |   1 |
+|  39 | DEBRA NELSON          | 306 Antofagasta Place                  | 3989     | 378318851631 | Vila Velha                 | Brazil                                | active |   1 |
+|  40 | AMANDA CARTER         | 671 Graz Street                        | 94399    | 680768868518 | Nador                      | Morocco                               | active |   2 |
+|  41 | STEPHANIE MITCHELL    | 42 Brindisi Place                      | 16744    | 42384721397  | Yerevan                    | Armenia                               | active |   1 |
+|  42 | CAROLYN PEREZ         | 1632 Bislig Avenue                     | 61117    | 471675840679 | Pak Kret                   | Thailand                              | active |   2 |
+|  43 | CHRISTINE ROBERTS     | 1447 Imus Way                          | 48942    | 539758313890 | Faaa                       | French Polynesia                      | active |   2 |
+|  44 | MARIE TURNER          | 1998 Halifax Drive                     | 76022    | 177727722820 | Lipetsk                    | Russian Federation                    | active |   1 |
+|  45 | JANET PHILLIPS        | 1718 Valencia Street                   | 37359    | 675292816413 | Antofagasta                | Chile                                 | active |   1 |
+|  46 | CATHERINE CAMPBELL    | 46 Pjatigorsk Lane                     | 23616    | 262076994845 | Moscow                     | Russian Federation                    | active |   2 |
+|  47 | FRANCES PARKER        | 686 Garland Manor                      | 52535    | 69493378813  | Juazeiro do Norte          | Brazil                                | active |   1 |
+|  48 | ANN EVANS             | 909 Garland Manor                      | 69367    | 705800322606 | Niznekamsk                 | Russian Federation                    | active |   1 |
+|  49 | JOYCE EDWARDS         | 725 Isesaki Place                      | 74428    | 876295323994 | Jedda                      | Saudi Arabia                          | active |   2 |
++-----+-----------------------+----------------------------------------+----------+--------------+----------------------------+---------------------------------------+--------+-----+
+etc...
+
+
+select * from film_category;
++---------+-------------+---------------------+
+| film_id | category_id | last_update         |
++---------+-------------+---------------------+
+|       1 |           6 | 2006-02-15 05:07:09 |
+|       2 |          11 | 2006-02-15 05:07:09 |
+|       3 |           6 | 2006-02-15 05:07:09 |
+|       4 |          11 | 2006-02-15 05:07:09 |
+|       5 |           8 | 2006-02-15 05:07:09 |
+|       6 |           9 | 2006-02-15 05:07:09 |
+|       7 |           5 | 2006-02-15 05:07:09 |
+|       8 |          11 | 2006-02-15 05:07:09 |
+|       9 |          11 | 2006-02-15 05:07:09 |
+|      10 |          15 | 2006-02-15 05:07:09 |
+|      11 |           9 | 2006-02-15 05:07:09 |
+|      12 |          12 | 2006-02-15 05:07:09 |
+|      13 |          11 | 2006-02-15 05:07:09 |
+|      14 |           4 | 2006-02-15 05:07:09 |
+|      15 |           9 | 2006-02-15 05:07:09 |
+|      16 |           9 | 2006-02-15 05:07:09 |
+|      17 |          12 | 2006-02-15 05:07:09 |
+|      18 |           2 | 2006-02-15 05:07:09 |
+|      19 |           1 | 2006-02-15 05:07:09 |
+|      20 |          12 | 2006-02-15 05:07:09 |
+|      21 |           1 | 2006-02-15 05:07:09 |
+|      22 |          13 | 2006-02-15 05:07:09 |
+|      23 |           2 | 2006-02-15 05:07:09 |
+|      24 |          11 | 2006-02-15 05:07:09 |
+|      25 |          13 | 2006-02-15 05:07:09 |
+|      26 |          14 | 2006-02-15 05:07:09 |
+|      27 |          15 | 2006-02-15 05:07:09 |
+|      28 |           5 | 2006-02-15 05:07:09 |
+|      29 |           1 | 2006-02-15 05:07:09 |
+|      30 |          11 | 2006-02-15 05:07:09 |
+|      31 |           8 | 2006-02-15 05:07:09 |
+|      32 |          13 | 2006-02-15 05:07:09 |
+|      33 |           7 | 2006-02-15 05:07:09 |
+|      34 |          11 | 2006-02-15 05:07:09 |
++---------+-------------+---------------------+
+etc...
+```
 - Crea 5 vistas sobre la BBDD, y realizar la consulta, para mostrar los resultados. Las vistas deben de tener 3 o más tablas de la BBDD.
 
+  - Vista 1
+  ```sql
+  create view customer_spc AS(select max(p.amount), c.first_name, c.email, s.last_update from customer c join store s on s.store_id=c.store_id left join payment p on p.customer_id=c.customer_id where amount > 5  group by c.customer_id);
+  Query OK, 0 rows affected (0,02 sec)
+  
+  +---------------+-------------+------------------------------------------+---------------------+
+  | max(p.amount) | first_name  | email                                    | last_update         |
+  +---------------+-------------+------------------------------------------+---------------------+
+  |          9.99 | MARY        | MARY.SMITH@sakilacustomer.org            | 2006-02-15 04:57:12 |
+  |         10.99 | PATRICIA    | PATRICIA.JOHNSON@sakilacustomer.org      | 2006-02-15 04:57:12 |
+  |         10.99 | LINDA       | LINDA.WILLIAMS@sakilacustomer.org        | 2006-02-15 04:57:12 |
+  |          8.99 | BARBARA     | BARBARA.JONES@sakilacustomer.org         | 2006-02-15 04:57:12 |
+  |          9.99 | ELIZABETH   | ELIZABETH.BROWN@sakilacustomer.org       | 2006-02-15 04:57:12 |
+  |          7.99 | JENNIFER    | JENNIFER.DAVIS@sakilacustomer.org        | 2006-02-15 04:57:12 |
+  |          8.99 | MARIA       | MARIA.MILLER@sakilacustomer.org          | 2006-02-15 04:57:12 |
+  |          9.99 | SUSAN       | SUSAN.WILSON@sakilacustomer.org          | 2006-02-15 04:57:12 |
+  |          7.99 | MARGARET    | MARGARET.MOORE@sakilacustomer.org        | 2006-02-15 04:57:12 |
+  |          8.99 | DOROTHY     | DOROTHY.TAYLOR@sakilacustomer.org        | 2006-02-15 04:57:12 |
+  |          9.99 | LISA        | LISA.ANDERSON@sakilacustomer.org         | 2006-02-15 04:57:12 |
+  |         10.99 | NANCY       | NANCY.THOMAS@sakilacustomer.org          | 2006-02-15 04:57:12 |
+  |         11.99 | KAREN       | KAREN.JACKSON@sakilacustomer.org         | 2006-02-15 04:57:12 |
+  |          9.99 | BETTY       | BETTY.WHITE@sakilacustomer.org           | 2006-02-15 04:57:12 |
+  |          8.99 | HELEN       | HELEN.HARRIS@sakilacustomer.org          | 2006-02-15 04:57:12 |
+  |          8.99 | SANDRA      | SANDRA.MARTIN@sakilacustomer.org         | 2006-02-15 04:57:12 |
+  |          8.99 | DONNA       | DONNA.THOMPSON@sakilacustomer.org        | 2006-02-15 04:57:12 |
+  |          8.99 | CAROL       | CAROL.GARCIA@sakilacustomer.org          | 2006-02-15 04:57:12 |
+  |          9.99 | RUTH        | RUTH.MARTINEZ@sakilacustomer.org         | 2006-02-15 04:57:12 |
+  |          7.99 | SHARON      | SHARON.ROBINSON@sakilacustomer.org       | 2006-02-15 04:57:12 |
+  |         10.99 | MICHELLE    | MICHELLE.CLARK@sakilacustomer.org        | 2006-02-15 04:57:12 |
+  |          9.99 | LAURA       | LAURA.RODRIGUEZ@sakilacustomer.org       | 2006-02-15 04:57:12 |
+  |          9.99 | SARAH       | SARAH.LEWIS@sakilacustomer.org           | 2006-02-15 04:57:12 |
+  |          8.99 | KIMBERLY    | KIMBERLY.LEE@sakilacustomer.org          | 2006-02-15 04:57:12 |
+  +---------------+-------------+------------------------------------------+---------------------+
+  etc...
+  ```
+  - Vista 2
+    ```sql
+    CREATE VIEW clientes_actv AS SELECT c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS num_alquileres FROM customer c JOIN rental r ON
+c.customer_id = r.customer_id GROUP BY c.customer_id, c.first_name, c.last_name ORDER BY num_alquileres DESC;
+Query OK, 0 rows affected (0,02 sec)
 
+  select * from clientes_actv;
++-------------+-------------+--------------+----------------+
+| customer_id | first_name  | last_name    | num_alquileres |
++-------------+-------------+--------------+----------------+
+|         148 | ELEANOR     | HUNT         |             46 |
+|         526 | KARL        | SEAL         |             45 |
+|         144 | CLARA       | SHAW         |             42 |
+|         236 | MARCIA      | DEAN         |             42 |
+|          75 | TAMMY       | SANDERS      |             41 |
+|         197 | SUE         | PETERS       |             40 |
+|         469 | WESLEY      | BULL         |             40 |
+|         137 | RHONDA      | KENNEDY      |             39 |
+|         178 | MARION      | SNYDER       |             39 |
+|         468 | TIM         | CARY         |             39 |
+|           5 | ELIZABETH   | BROWN        |             38 |
+|         295 | DAISY       | BATES        |             38 |
+|         410 | CURTIS      | IRBY         |             38 |
+|         459 | TOMMY       | COLLAZO      |             38 |
+|         176 | JUNE        | CARROLL      |             37 |
+|         198 | ELSIE       | KELLEY       |             37 |
+|         257 | MARSHA      | DOUGLAS      |             37 |
+|         366 | BRANDON     | HUEY         |             37 |
+|          29 | ANGELA      | HERNANDEZ    |             36 |
+|         267 | MARGIE      | WADE         |             36 |
+|         348 | ROGER       | QUINTANILLA  |             36 |
+|         354 | JUSTIN      | NGO          |             36 |
+|         380 | RUSSELL     | BRINSON      |             36 |
+|         439 | ALEXANDER   | FENNELL      |             36 |
+|          21 | MICHELLE    | CLARK        |             35 |
+|          50 | DIANE       | COLLINS      |             35 |
+|          91 | LOIS        | BUTLER       |             35 |
+|         196 | ALMA        | AUSTIN       |             35 |
+|         204 | ROSEMARY    | SCHMIDT      |             35 |
+|         273 | PRISCILLA   | LOWE         |             35 |
+|         274 | NAOMI       | JENNINGS     |             35 |
+|         368 | HARRY       | ARCE         |             35 |
+|         371 | BILLY       | POULIN       |             35 |
+|         373 | LOUIS       | LEONE        |             35 |
+|         381 | BOBBY       | BOUDREAU     |             35 |
+|         403 | MIKE        | WAY          |             35 |
+|         506 | LESLIE      | SEWARD       |             35 |
++-------------+-------------+--------------+----------------+
+etc...
+    ```
+  - Vista 3
+    ```sql
+create view film_per_actor as select  a.actor_id, a.first_name, a.last_name, f.film_id, f.title from actor a join film_actor fa ON a.actor_id = fa.actor_id join film f ON fa.film_id = f.film_id;
+Query OK, 0 rows affected (0,02 sec)
+select * from film_per_actor;
++----------+-------------+--------------+---------+-----------------------------+
+| actor_id | first_name  | last_name    | film_id | title                       |
++----------+-------------+--------------+---------+-----------------------------+
+|        1 | PENELOPE    | GUINESS      |       1 | ACADEMY DINOSAUR            |
+|        1 | PENELOPE    | GUINESS      |      23 | ANACONDA CONFESSIONS        |
+|        1 | PENELOPE    | GUINESS      |      25 | ANGELS LIFE                 |
+|        1 | PENELOPE    | GUINESS      |     106 | BULWORTH COMMANDMENTS       |
+|        1 | PENELOPE    | GUINESS      |     140 | CHEAPER CLYDE               |
+|        1 | PENELOPE    | GUINESS      |     166 | COLOR PHILADELPHIA          |
+|        1 | PENELOPE    | GUINESS      |     277 | ELEPHANT TROJAN             |
+|        1 | PENELOPE    | GUINESS      |     361 | GLEAMING JAWBREAKER         |
+|        1 | PENELOPE    | GUINESS      |     438 | HUMAN GRAFFITI              |
+|        1 | PENELOPE    | GUINESS      |     499 | KING EVOLUTION              |
+|        1 | PENELOPE    | GUINESS      |     506 | LADY STAGE                  |
+|        1 | PENELOPE    | GUINESS      |     509 | LANGUAGE COWBOY             |
+|        1 | PENELOPE    | GUINESS      |     605 | MULHOLLAND BEAST            |
+|        1 | PENELOPE    | GUINESS      |     635 | OKLAHOMA JUMANJI            |
+|        1 | PENELOPE    | GUINESS      |     749 | RULES HUMAN                 |
+|        1 | PENELOPE    | GUINESS      |     832 | SPLASH GUMP                 |
+|        1 | PENELOPE    | GUINESS      |     939 | VERTIGO NORTHWEST           |
+|        1 | PENELOPE    | GUINESS      |     970 | WESTWARD SEABISCUIT         |
+|        1 | PENELOPE    | GUINESS      |     980 | WIZARD COLDBLOODED          |
+|        2 | NICK        | WAHLBERG     |       3 | ADAPTATION HOLES            |
+|        2 | NICK        | WAHLBERG     |      31 | APACHE DIVINE               |
+|        2 | NICK        | WAHLBERG     |      47 | BABY HALL                   |
+|        2 | NICK        | WAHLBERG     |     105 | BULL SHAWSHANK              |
+|        2 | NICK        | WAHLBERG     |     132 | CHAINSAW UPTOWN             |
+|        2 | NICK        | WAHLBERG     |     145 | CHISUM BEHAVIOR             |
+|        2 | NICK        | WAHLBERG     |     226 | DESTINY SATURDAY            |
+|        2 | NICK        | WAHLBERG     |     249 | DRACULA CRYSTAL             |
+|        2 | NICK        | WAHLBERG     |     314 | FIGHT JAWBREAKER            |
+|        2 | NICK        | WAHLBERG     |     321 | FLASH WARS                  |
+|        2 | NICK        | WAHLBERG     |     357 | GILBERT PELICAN             |
+|        2 | NICK        | WAHLBERG     |     369 | GOODFELLAS SALUTE           |
+|        2 | NICK        | WAHLBERG     |     399 | HAPPINESS UNITED            |
+|        2 | NICK        | WAHLBERG     |     458 | INDIAN LOVE                 |
+|        2 | NICK        | WAHLBERG     |     481 | JEKYLL FROGMEN              |
+|        2 | NICK        | WAHLBERG     |     485 | JERSEY SASSY                |
+|        2 | NICK        | WAHLBERG     |     518 | LIAISONS SWEET              |
+|        2 | NICK        | WAHLBERG     |     540 | LUCKY FLYING                |
++----------+-------------+--------------+---------+-----------------------------+
+etc...
+    ```
+    - Vista 4
+    ```sql
+    create view peliculas_populares_por_categoria as select c.name, f.title, count(r.rental_id) AS num_alquileres from film f join film_category fc on f.film_id = fc.film_id join category c on fc.category_id = c.category_id join inventory i on f.film_id = i.film_id join rental r on i.inventory_id = r.inventory_id group by c.name, f.title;
+select * from peliculas_populares_por_categoria;
++-------------+-----------------------------+----------------+
+| name        | title                       | num_alquileres |
++-------------+-----------------------------+----------------+
+| Action      | AMADEUS HOLY                |             21 |
+| Action      | AMERICAN CIRCUS             |             22 |
+| Action      | ANTITRUST TOMATOES          |             10 |
+| Action      | BAREFOOT MANCHURIAN         |             18 |
+| Action      | BERETS AGENT                |             21 |
+| Action      | BRIDE INTRIGUE              |             19 |
+| Action      | BULL SHAWSHANK              |             16 |
+| Action      | CADDYSHACK JEDI             |             16 |
+| Action      | CAMPUS REMEMBER             |             19 |
+| Action      | CASUALTIES ENCINO           |              9 |
+| Action      | CELEBRITY HORN              |             24 |
+| Action      | CLUELESS BUCKET             |             25 |
+| Action      | CROW GREASE                 |             12 |
+| Action      | DANCES NONE                 |             14 |
+| Action      | DARKO DORADO                |             11 |
+| Action      | DARN FORRESTER              |             18 |
+| Action      | DEVIL DESIRE                |             15 |
+| Action      | DRAGON SQUAD                |             11 |
+| Action      | DREAM PICKUP                |             22 |
+| Action      | DRIFTER COMMANDMENTS        |             24 |
+| Action      | EASY GLADIATOR              |             23 |
+| Action      | ENTRAPMENT SATISFACTION     |             15 |
+| Action      | EXCITEMENT EVE              |             21 |
+| Action      | FANTASY TROOPERS            |             26 |
+| Action      | FOOL MOCKINGBIRD            |             23 |
+| Action      | FORREST SONS                |             18 |
+| Action      | GLASS DYING                 |             14 |
+| Action      | GOSFORD DONNIE              |              8 |
++-------------+-----------------------------+----------------+
+etc...
+    ```
+
+    - Vista 5
+    ```sql
+create view ingresos_por_pelicula as select f.film_id, f.title, COUNT(r.rental_id) as num_alquileres, SUM(p.amount) AS ingreso_total from film f left join inventory i on f.film_id = i.film_id left join rental r on i.inventory_id = r.inventory_id left join payment p on r.rental_id = p.rental_id group by f.film_id, f.title;
+
+select * from ingresos_por_pelicula;
++---------+-----------------------------+----------------+---------------+
+| film_id | title                       | num_alquileres | ingreso_total |
++---------+-----------------------------+----------------+---------------+
+|       1 | ACADEMY DINOSAUR            |             23 |         36.77 |
+|       2 | ACE GOLDFINGER              |              7 |         52.93 |
+|       3 | ADAPTATION HOLES            |             12 |         37.88 |
+|       4 | AFFAIR PREJUDICE            |             23 |         91.77 |
+|       5 | AFRICAN EGG                 |             12 |         51.88 |
+|       6 | AGENT TRUMAN                |             21 |        126.79 |
+|       7 | AIRPLANE SIERRA             |             15 |         82.85 |
+|       8 | AIRPORT POLLOCK             |             18 |        102.82 |
+|       9 | ALABAMA DEVIL               |             12 |         71.88 |
+|      10 | ALADDIN CALENDAR            |             23 |        131.77 |
+|      11 | ALAMO VIDEOTAPE             |             24 |         35.76 |
+|      12 | ALASKA PHANTOM              |             26 |         44.74 |
+|      13 | ALI FOREVER                 |              9 |         54.91 |
+|      14 | ALICE FANTASIA              |              0 |          NULL |
+|      15 | ALIEN CENTER                |             22 |         90.78 |
+|      16 | ALLEY EVOLUTION             |             14 |         52.86 |
+|      17 | ALONE TRIP                  |             18 |         62.82 |
+|      18 | ALTER VICTORY               |             22 |         32.78 |
+|      19 | AMADEUS HOLY                |             21 |         33.79 |
+|      20 | AMELIE HELLFIGHTERS         |             10 |         67.90 |
+|      21 | AMERICAN CIRCUS             |             22 |        167.78 |
+|      22 | AMISTAD MIDSUMMER           |             21 |         70.79 |
+|      23 | ANACONDA CONFESSIONS        |             21 |         60.79 |
+|      24 | ANALYZE HOOSIERS            |             14 |         55.86 |
++---------+-----------------------------+----------------+---------------+
+etc...
+    ```
 ## Refecrencias
 [Sakila Database](https://dev.mysql.com/doc/sakila/en/sakila-introduction.html)

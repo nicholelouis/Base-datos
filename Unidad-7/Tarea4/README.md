@@ -326,33 +326,104 @@ select * from city where city regexp '.* .*';
 - Películas con una duración entre 80 y 100.
 ```sql
 select * from film where length between 80 and 100;
-salida muy larga
++---------+-------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+| film_id | title                   | description                                                                                                                    | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                                       | last_update         |
++---------+-------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+|       1 | ACADEMY DINOSAUR        | A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies                               |         2006 |           1 |                 NULL |               6 |        0.99 |     86 |            20.99 | PG     | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|      14 | ALICE FANTASIA          | A Emotional Drama of a A Shark And a Database Administrator who must Vanquish a Pioneer in Soviet Georgia                      |         2006 |           1 |                 NULL |               6 |        0.99 |     94 |            23.99 | NC-17  | Trailers,Deleted Scenes,Behind the Scenes              | 2006-02-15 05:03:42 |
+|      17 | ALONE TRIP              | A Fast-Paced Character Study of a Composer And a Dog who must Outgun a Boat in An Abandoned Fun House                          |         2006 |           1 |                 NULL |               3 |        0.99 |     82 |            14.99 | R      | Trailers,Behind the Scenes                             | 2006-02-15 05:03:42 |
+|      22 | AMISTAD MIDSUMMER       | A Emotional Character Study of a Dentist And a Crocodile who must Meet a Sumo Wrestler in California                           |         2006 |           1 |                 NULL |               6 |        2.99 |     85 |            10.99 | G      | Commentaries,Behind the Scenes                         | 2006-02-15 05:03:42 |
+|      23 | ANACONDA CONFESSIONS    | A Lacklusture Display of a Dentist And a Dentist who must Fight a Girl in Australia                                            |         2006 |           1 |                 NULL |               3 |        0.99 |     92 |             9.99 | R      | Trailers,Deleted Scenes                                | 2006-02-15 05:03:42 |
+|      26 | ANNIE IDENTITY          | A Amazing Panorama of a Pastry Chef And a Boat who must Escape a Woman in An Abandoned Amusement Park                          |         2006 |           1 |                 NULL |               3 |        0.99 |     86 |            15.99 | G      | Commentaries,Deleted Scenes                            | 2006-02-15 05:03:42 |
+|      28 | ANTHEM LUKE             | A Touching Panorama of a Waitress And a Woman who must Outrace a Dog in An Abandoned Amusement Park                            |         2006 |           1 |                 NULL |               5 |        4.99 |     91 |            16.99 | PG-13  | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|      30 | ANYTHING SAVANNAH       | A Epic Story of a Pastry Chef And a Woman who must Chase a Feminist in An Abandoned Fun House                                  |         2006 |           1 |                 NULL |               4 |        2.99 |     82 |            27.99 | R      | Trailers,Deleted Scenes,Behind the Scenes              | 2006-02-15 05:03:42 |
+|      31 | APACHE DIVINE           | A Awe-Inspiring Reflection of a Pastry Chef And a Teacher who must Overcome a Sumo Wrestler in A U-Boat                        |         2006 |           1 |                 NULL |               5 |        4.99 |     92 |            16.99 | NC-17  | Commentaries,Deleted Scenes,Behind the Scenes          | 2006-02-15 05:03:42 |
+|      39 | ARMAGEDDON LOST         | A Fast-Paced Tale of a Boat And a Teacher who must Succumb a Composer in An Abandoned Mine Shaft                               |         2006 |           1 |                 NULL |               5 |        0.99 |     99 |            10.99 | G      | Trailers                                               | 2006-02-15 05:03:42 |
++---------+-------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+etc...
 ```
 
 - Peliculas con un rental_rate entre 1 y 3.
 ```sql
 select * from film where rental_rate between 1 and 3;
-salida muy larga
++---------+-----------------------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+| film_id | title                       | description                                                                                                                        | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                                       | last_update         |
++---------+-----------------------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+|       3 | ADAPTATION HOLES            | A Astounding Reflection of a Lumberjack And a Car who must Sink a Lumberjack in A Baloon Factory                                   |         2006 |           1 |                 NULL |               7 |        2.99 |     50 |            18.99 | NC-17  | Trailers,Deleted Scenes                                | 2006-02-15 05:03:42 |
+|       4 | AFFAIR PREJUDICE            | A Fanciful Documentary of a Frisbee And a Lumberjack who must Chase a Monkey in A Shark Tank                                       |         2006 |           1 |                 NULL |               5 |        2.99 |    117 |            26.99 | G      | Commentaries,Behind the Scenes                         | 2006-02-15 05:03:42 |
+|       5 | AFRICAN EGG                 | A Fast-Paced Documentary of a Pastry Chef And a Dentist who must Pursue a Forensic Psychologist in The Gulf of Mexico              |         2006 |           1 |                 NULL |               6 |        2.99 |    130 |            22.99 | G      | Deleted Scenes                                         | 2006-02-15 05:03:42 |
+|       6 | AGENT TRUMAN                | A Intrepid Panorama of a Robot And a Boy who must Escape a Sumo Wrestler in Ancient China                                          |         2006 |           1 |                 NULL |               3 |        2.99 |    169 |            17.99 | PG     | Deleted Scenes                                         | 2006-02-15 05:03:42 |
+|       9 | ALABAMA DEVIL               | A Thoughtful Panorama of a Database Administrator And a Mad Scientist who must Outgun a Mad Scientist in A Jet Boat                |         2006 |           1 |                 NULL |               3 |        2.99 |    114 |            21.99 | PG-13  | Trailers,Deleted Scenes                                | 2006-02-15 05:03:42 |
+|      15 | ALIEN CENTER                | A Brilliant Drama of a Cat And a Mad Scientist who must Battle a Feminist in A MySQL Convention                                    |         2006 |           1 |                 NULL |               5 |        2.99 |     46 |            10.99 | NC-17  | Trailers,Commentaries,Behind the Scenes                | 2006-02-15 05:03:42 |
++---------+-----------------------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+etc...
 ```
 
 - Películas con un titulo de más de 12 letras.
 ```sql
 select * from film where title regexp '[a-zA-Z]{12,}';
-salida muy larga
++---------+-----------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+| film_id | title                       | description                                                                                                                    | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                                       | last_update         |
++---------+-----------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+|      20 | AMELIE HELLFIGHTERS         | A Boring Drama of a Woman And a Squirrel who must Conquer a Student in A Baloon                                                |         2006 |           1 |                 NULL |               4 |        4.99 |     79 |            23.99 | R      | Commentaries,Deleted Scenes,Behind the Scenes          | 2006-02-15 05:03:42 |
+|      35 | ARACHNOPHOBIA ROLLERCOASTER | A Action-Packed Reflection of a Pastry Chef And a Composer who must Discover a Mad Scientist in The First Manned Space Station |         2006 |           1 |                 NULL |               4 |        2.99 |    147 |            24.99 | PG-13  | Trailers,Deleted Scenes,Behind the Scenes              | 2006-02-15 05:03:42 |
+|      41 | ARSENIC INDEPENDENCE        | A Fanciful Documentary of a Mad Cow And a Womanizer who must Find a Dentist in Berlin                                          |         2006 |           1 |                 NULL |               4 |        0.99 |    137 |            17.99 | PG     | Trailers,Deleted Scenes,Behind the Scenes              | 2006-02-15 05:03:42 |
+|      58 | BEACH HEARTBREAKERS         | A Fateful Display of a Womanizer And a Mad Scientist who must Outgun a A Shark in Soviet Georgia                               |         2006 |           1 |                 NULL |               6 |        2.99 |    122 |            16.99 | G      | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|      75 | BIRD INDEPENDENCE           | A Thrilling Documentary of a Car And a Student who must Sink a Hunter in The Canadian Rockies                                  |         2006 |           1 |                 NULL |               6 |        4.99 |    163 |            14.99 | G      | Commentaries,Behind the Scenes                         | 2006-02-15 05:03:42 |
+|     106 | BULWORTH COMMANDMENTS       | A Amazing Display of a Mad Cow And a Pioneer who must Redeem a Sumo Wrestler in The Outback                                    |         2006 |           1 |                 NULL |               4 |        2.99 |     61 |            14.99 | G      | Trailers                                               | 2006-02-15 05:03:42 |
++---------+-----------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+etc...
 ```
 - Peliculas con un rating de PG o G.
 ```sql 
  select * from film where rating = 'PG' or 'G';
++---------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+| film_id | title                  | description                                                                                                                       | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                                       | last_update         |
++---------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+|       1 | ACADEMY DINOSAUR       | A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies                                  |         2006 |           1 |                 NULL |               6 |        0.99 |     86 |            20.99 | PG     | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|       6 | AGENT TRUMAN           | A Intrepid Panorama of a Robot And a Boy who must Escape a Sumo Wrestler in Ancient China                                         |         2006 |           1 |                 NULL |               3 |        2.99 |    169 |            17.99 | PG     | Deleted Scenes                                         | 2006-02-15 05:03:42 |
+|      12 | ALASKA PHANTOM         | A Fanciful Saga of a Hunter And a Pastry Chef who must Vanquish a Boy in Australia                                                |         2006 |           1 |                 NULL |               6 |        0.99 |    136 |            22.99 | PG     | Commentaries,Deleted Scenes                            | 2006-02-15 05:03:42 |
+|      13 | ALI FOREVER            | A Action-Packed Drama of a Dentist And a Crocodile who must Battle a Feminist in The Canadian Rockies                             |         2006 |           1 |                 NULL |               4 |        4.99 |    150 |            21.99 | PG     | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|      19 | AMADEUS HOLY           | A Emotional Display of a Pioneer And a Technical Writer who must Battle a Man in A Baloon                                         |         2006 |           1 |                 NULL |               6 |        0.99 |    113 |            20.99 | PG     | Commentaries,Deleted Scenes,Behind the Scenes          | 2006-02-15 05:03:42 |
+|      37 | ARIZONA BANG           | A Brilliant Panorama of a Mad Scientist And a Mad Cow who must Meet a Pioneer in A Monastery                                      |         2006 |           1 |                 NULL |               3 |        2.99 |    121 |            28.99 | PG     | Trailers,Deleted Scenes                                | 2006-02-15 05:03:42 |
++---------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+etc...
 ```
 
 - Peliculas que no tengan un rating de NC-17.
 ```sql 
  select * from film where rating not like 'NC-17';
++---------+-----------------------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+| film_id | title                       | description                                                                                                                        | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                                       | last_update         |
++---------+-----------------------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+|       1 | ACADEMY DINOSAUR            | A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies                                   |         2006 |           1 |                 NULL |               6 |        0.99 |     86 |            20.99 | PG     | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|       2 | ACE GOLDFINGER              | A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China                               |         2006 |           1 |                 NULL |               3 |        4.99 |     48 |            12.99 | G      | Trailers,Deleted Scenes                                | 2006-02-15 05:03:42 |
+|       4 | AFFAIR PREJUDICE            | A Fanciful Documentary of a Frisbee And a Lumberjack who must Chase a Monkey in A Shark Tank                                       |         2006 |           1 |                 NULL |               5 |        2.99 |    117 |            26.99 | G      | Commentaries,Behind the Scenes                         | 2006-02-15 05:03:42 |
+|       5 | AFRICAN EGG                 | A Fast-Paced Documentary of a Pastry Chef And a Dentist who must Pursue a Forensic Psychologist in The Gulf of Mexico              |         2006 |           1 |                 NULL |               6 |        2.99 |    130 |            22.99 | G      | Deleted Scenes                                         | 2006-02-15 05:03:42 |
+|       6 | AGENT TRUMAN                | A Intrepid Panorama of a Robot And a Boy who must Escape a Sumo Wrestler in Ancient China                                          |         2006 |           1 |                 NULL |               3 |        2.99 |    169 |            17.99 | PG     | Deleted Scenes                                         | 2006-02-15 05:03:42 |
++---------+-----------------------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+etc...
 ```
 
 - Peliculas con un rating PG y duracion de más de 120.
 ```sql 
  select * from film where rating = 'PG' and length >= 120;
++---------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+| film_id | title                 | description                                                                                                           | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                                       | last_update         |
++---------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+|       6 | AGENT TRUMAN          | A Intrepid Panorama of a Robot And a Boy who must Escape a Sumo Wrestler in Ancient China                             |         2006 |           1 |                 NULL |               3 |        2.99 |    169 |            17.99 | PG     | Deleted Scenes                                         | 2006-02-15 05:03:42 |
+|      12 | ALASKA PHANTOM        | A Fanciful Saga of a Hunter And a Pastry Chef who must Vanquish a Boy in Australia                                    |         2006 |           1 |                 NULL |               6 |        0.99 |    136 |            22.99 | PG     | Commentaries,Deleted Scenes                            | 2006-02-15 05:03:42 |
+|      13 | ALI FOREVER           | A Action-Packed Drama of a Dentist And a Crocodile who must Battle a Feminist in The Canadian Rockies                 |         2006 |           1 |                 NULL |               4 |        4.99 |    150 |            21.99 | PG     | Deleted Scenes,Behind the Scenes                       | 2006-02-15 05:03:42 |
+|      37 | ARIZONA BANG          | A Brilliant Panorama of a Mad Scientist And a Mad Cow who must Meet a Pioneer in A Monastery                          |         2006 |           1 |                 NULL |               3 |        2.99 |    121 |            28.99 | PG     | Trailers,Deleted Scenes                                | 2006-02-15 05:03:42 |
+|      41 | ARSENIC INDEPENDENCE  | A Fanciful Documentary of a Mad Cow And a Womanizer who must Find a Dentist in Berlin                                 |         2006 |           1 |                 NULL |               4 |        0.99 |    137 |            17.99 | PG     | Trailers,Deleted Scenes,Behind the Scenes              | 2006-02-15 05:03:42 |
+|      74 | BIRCH ANTITRUST       | A Fanciful Panorama of a Husband And a Pioneer who must Outgun a Dog in A Baloon                                      |         2006 |           1 |                 NULL |               4 |        4.99 |    162 |            18.99 | PG     | Trailers,Commentaries,Deleted Scenes                   | 2006-02-15 05:03:42 |
+|      88 | BORN SPINAL           | A Touching Epistle of a Frisbee And a Husband who must Pursue a Student in Nigeria                                    |         2006 |           1 |                 NULL |               7 |        4.99 |    179 |            17.99 | PG     | Trailers,Commentaries,Deleted Scenes                   | 2006-02-15 05:03:42 |
+|      93 | BRANNIGAN SUNRISE     | A Amazing Epistle of a Moose And a Crocodile who must Outrace a Dog in Berlin                                         |         2006 |           1 |                 NULL |               4 |        4.99 |    121 |            27.99 | PG     | Trailers                                               | 2006-02-15 05:03:42 |
+|      99 | BRINGING HYSTERICAL   | A Fateful Saga of a A Shark And a Technical Writer who must Find a Woman in A Jet Boat                                |         2006 |           1 |                 NULL |               7 |        2.99 |    136 |            14.99 | PG     | Trailers                                               | 2006-02-15 05:03:42 |
+|     103 | BUCKET BROTHERHOOD    | A Amazing Display of a Girl And a Womanizer who must Succumb a Lumberjack in A Baloon Factory                         |         2006 |           1 |                 NULL |               7 |        4.99 |    133 |            27.99 | PG     | Commentaries,Deleted Scenes                            | 2006-02-15 05:03:42 |
+|     121 | CAROL TEXAS           | A Astounding Character Study of a Composer And a Student who must Overcome a Composer in A Monastery                  |         2006 |           1 |                 NULL |               4 |        2.99 |    151 |            15.99 | PG     | Trailers,Behind the Scenes                             | 2006-02-15 05:03:42 |
++---------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+--------------------------------------------------------+---------------------+
+etc...
 ```
 
 - ¿Cuantos actores hay?
@@ -442,11 +513,54 @@ salida muy larga
 - Mostrar el nombre de la película y el nombre de los actores.
 ```sql 
  select f.title, a.first_name from film_actor fa join actor a on fa.actor_id=a.actor_id join film f on fa.film_id=f.film_id;
++-----------------------------+-------------+
+| title                       | first_name  |
++-----------------------------+-------------+
+| ACADEMY DINOSAUR            | PENELOPE    |
+| ANACONDA CONFESSIONS        | PENELOPE    |
+| ANGELS LIFE                 | PENELOPE    |
+| BULWORTH COMMANDMENTS       | PENELOPE    |
+| CHEAPER CLYDE               | PENELOPE    |
+| COLOR PHILADELPHIA          | PENELOPE    |
+| ELEPHANT TROJAN             | PENELOPE    |
+| GLEAMING JAWBREAKER         | PENELOPE    |
+| HUMAN GRAFFITI              | PENELOPE    |
+| KING EVOLUTION              | PENELOPE    |
+| LADY STAGE                  | PENELOPE    |
+| LANGUAGE COWBOY             | PENELOPE    |
+| MULHOLLAND BEAST            | PENELOPE    |
+| OKLAHOMA JUMANJI            | PENELOPE    |
+| RULES HUMAN                 | PENELOPE    |
+| SPLASH GUMP                 | PENELOPE    |
+| VERTIGO NORTHWEST           | PENELOPE    |
+| WESTWARD SEABISCUIT         | PENELOPE    |
++-----------------------------+-------------+
+etc...
 ```
 
 - Mostrar el nombre de la película y el de sus categorías.
 ```sql 
  select c.name, f.title from film_category fc join category c on c.category_id=fc.category_id join film f on f.film_id=fc.film_id;
++-------------+-----------------------------+
+| name        | title                       |
++-------------+-----------------------------+
+| Action      | AMADEUS HOLY                |
+| Action      | AMERICAN CIRCUS             |
+| Action      | ANTITRUST TOMATOES          |
+| Action      | ARK RIDGEMONT               |
+| Action      | BAREFOOT MANCHURIAN         |
+| Action      | BERETS AGENT                |
+| Action      | BRIDE INTRIGUE              |
+| Action      | BULL SHAWSHANK              |
+| Action      | CADDYSHACK JEDI             |
+| Action      | CAMPUS REMEMBER             |
+| Action      | CASUALTIES ENCINO           |
+| Action      | CELEBRITY HORN              |
+| Action      | CLUELESS BUCKET             |
+| Action      | CROW GREASE                 |
+| Action      | DANCES NONE                 |
++-------------+-----------------------------+
+etc...
 ```
 
 - Mostrar el country, la ciudad y dirección de cada miembro del staff.
@@ -463,6 +577,24 @@ salida muy larga
 - Mostrar el country, la ciudad y dirección de cada customer.
 ```sql 
  select name, country, city, address from customer_list
++-----------------------+---------------------------------------+----------------------------+----------------------------------------+
+| name                  | country                               | city                       | address                                |
++-----------------------+---------------------------------------+----------------------------+----------------------------------------+
+| VERA MCCOY            | Afghanistan                           | Kabul                      | 1168 Najafabad Parkway                 |
+| MARIO CHEATHAM        | Algeria                               | Batna                      | 1924 Shimonoseki Drive                 |
+| JUDY GRAY             | Algeria                               | Béchar                     | 1031 Daugavpils Parkway                |
+| JUNE CARROLL          | Algeria                               | Skikda                     | 757 Rustenburg Avenue                  |
+| ANTHONY SCHWAB        | American Samoa                        | Tafuna                     | 1892 Nabereznyje Tšelny Lane           |
+| CLAUDE HERZOG         | Angola                                | Benguela                   | 486 Ondo Parkway                       |
+| MARTIN BALES          | Angola                                | Namibe                     | 368 Huánuco Boulevard                  |
+| BOBBY BOUDREAU        | Anguilla                              | South Hill                 | 1368 Maracaíbo Boulevard               |
+| WILLIE MARKHAM        | Argentina                             | Almirante Brown            | 1623 Kingstown Drive                   |
+| JORDAN ARCHULETA      | Argentina                             | Avellaneda                 | 1229 Varanasi (Benares) Manor          |
+| JASON MORRISSEY       | Argentina                             | Bahía Blanca               | 1427 A Coruña (La Coruña) Place        |
+| KIMBERLY LEE          | Argentina                             | Córdoba                    | 96 Tafuna Way                          |
+| MICHEAL FORMAN        | Argentina                             | Escobar                    | 203 Tambaram Street                    |
++-----------------------+---------------------------------------+----------------------------+----------------------------------------+
+etc...
 ```
 
 - Numero de películas de cada rating
@@ -670,45 +802,45 @@ etc...
 - Crea 5 vistas sobre la BBDD, y realizar la consulta, para mostrar los resultados. Las vistas deben de tener 3 o más tablas de la BBDD.
 
   - Vista 1
-  ```sql
-    create view customer_spc AS (
-    select max(p.amount), c.first_name, c.email, s.last_update from customer c 
-    join store s on s.store_id=c.store_id 
-    left join payment p on p.customer_id=c.customer_id
-    where amount > 5  
-    group by c.customer_id);
-  Query OK, 0 rows affected (0,02 sec)
-  
-  +---------------+-------------+------------------------------------------+---------------------+
-  | max(p.amount) | first_name  | email                                    | last_update         |
-  +---------------+-------------+------------------------------------------+---------------------+
-  |          9.99 | MARY        | MARY.SMITH@sakilacustomer.org            | 2006-02-15 04:57:12 |
-  |         10.99 | PATRICIA    | PATRICIA.JOHNSON@sakilacustomer.org      | 2006-02-15 04:57:12 |
-  |         10.99 | LINDA       | LINDA.WILLIAMS@sakilacustomer.org        | 2006-02-15 04:57:12 |
-  |          8.99 | BARBARA     | BARBARA.JONES@sakilacustomer.org         | 2006-02-15 04:57:12 |
-  |          9.99 | ELIZABETH   | ELIZABETH.BROWN@sakilacustomer.org       | 2006-02-15 04:57:12 |
-  |          7.99 | JENNIFER    | JENNIFER.DAVIS@sakilacustomer.org        | 2006-02-15 04:57:12 |
-  |          8.99 | MARIA       | MARIA.MILLER@sakilacustomer.org          | 2006-02-15 04:57:12 |
-  |          9.99 | SUSAN       | SUSAN.WILSON@sakilacustomer.org          | 2006-02-15 04:57:12 |
-  |          7.99 | MARGARET    | MARGARET.MOORE@sakilacustomer.org        | 2006-02-15 04:57:12 |
-  |          8.99 | DOROTHY     | DOROTHY.TAYLOR@sakilacustomer.org        | 2006-02-15 04:57:12 |
-  |          9.99 | LISA        | LISA.ANDERSON@sakilacustomer.org         | 2006-02-15 04:57:12 |
-  |         10.99 | NANCY       | NANCY.THOMAS@sakilacustomer.org          | 2006-02-15 04:57:12 |
-  |         11.99 | KAREN       | KAREN.JACKSON@sakilacustomer.org         | 2006-02-15 04:57:12 |
-  |          9.99 | BETTY       | BETTY.WHITE@sakilacustomer.org           | 2006-02-15 04:57:12 |
-  |          8.99 | HELEN       | HELEN.HARRIS@sakilacustomer.org          | 2006-02-15 04:57:12 |
-  |          8.99 | SANDRA      | SANDRA.MARTIN@sakilacustomer.org         | 2006-02-15 04:57:12 |
-  |          8.99 | DONNA       | DONNA.THOMPSON@sakilacustomer.org        | 2006-02-15 04:57:12 |
-  |          8.99 | CAROL       | CAROL.GARCIA@sakilacustomer.org          | 2006-02-15 04:57:12 |
-  |          9.99 | RUTH        | RUTH.MARTINEZ@sakilacustomer.org         | 2006-02-15 04:57:12 |
-  |          7.99 | SHARON      | SHARON.ROBINSON@sakilacustomer.org       | 2006-02-15 04:57:12 |
-  |         10.99 | MICHELLE    | MICHELLE.CLARK@sakilacustomer.org        | 2006-02-15 04:57:12 |
-  |          9.99 | LAURA       | LAURA.RODRIGUEZ@sakilacustomer.org       | 2006-02-15 04:57:12 |
-  |          9.99 | SARAH       | SARAH.LEWIS@sakilacustomer.org           | 2006-02-15 04:57:12 |
-  |          8.99 | KIMBERLY    | KIMBERLY.LEE@sakilacustomer.org          | 2006-02-15 04:57:12 |
-  +---------------+-------------+------------------------------------------+---------------------+
-  etc...
-  ```
+    ```sql
+      create view customer_spc AS (
+      select max(p.amount), c.first_name, c.email, s.last_update from customer c 
+      join store s on s.store_id=c.store_id 
+      left join payment p on p.customer_id=c.customer_id
+      where amount > 5  
+      group by c.customer_id);
+    Query OK, 0 rows affected (0,02 sec)
+    
+    +---------------+-------------+------------------------------------------+---------------------+
+    | max(p.amount) | first_name  | email                                    | last_update         |
+    +---------------+-------------+------------------------------------------+---------------------+
+    |          9.99 | MARY        | MARY.SMITH@sakilacustomer.org            | 2006-02-15 04:57:12 |
+    |         10.99 | PATRICIA    | PATRICIA.JOHNSON@sakilacustomer.org      | 2006-02-15 04:57:12 |
+    |         10.99 | LINDA       | LINDA.WILLIAMS@sakilacustomer.org        | 2006-02-15 04:57:12 |
+    |          8.99 | BARBARA     | BARBARA.JONES@sakilacustomer.org         | 2006-02-15 04:57:12 |
+    |          9.99 | ELIZABETH   | ELIZABETH.BROWN@sakilacustomer.org       | 2006-02-15 04:57:12 |
+    |          7.99 | JENNIFER    | JENNIFER.DAVIS@sakilacustomer.org        | 2006-02-15 04:57:12 |
+    |          8.99 | MARIA       | MARIA.MILLER@sakilacustomer.org          | 2006-02-15 04:57:12 |
+    |          9.99 | SUSAN       | SUSAN.WILSON@sakilacustomer.org          | 2006-02-15 04:57:12 |
+    |          7.99 | MARGARET    | MARGARET.MOORE@sakilacustomer.org        | 2006-02-15 04:57:12 |
+    |          8.99 | DOROTHY     | DOROTHY.TAYLOR@sakilacustomer.org        | 2006-02-15 04:57:12 |
+    |          9.99 | LISA        | LISA.ANDERSON@sakilacustomer.org         | 2006-02-15 04:57:12 |
+    |         10.99 | NANCY       | NANCY.THOMAS@sakilacustomer.org          | 2006-02-15 04:57:12 |
+    |         11.99 | KAREN       | KAREN.JACKSON@sakilacustomer.org         | 2006-02-15 04:57:12 |
+    |          9.99 | BETTY       | BETTY.WHITE@sakilacustomer.org           | 2006-02-15 04:57:12 |
+    |          8.99 | HELEN       | HELEN.HARRIS@sakilacustomer.org          | 2006-02-15 04:57:12 |
+    |          8.99 | SANDRA      | SANDRA.MARTIN@sakilacustomer.org         | 2006-02-15 04:57:12 |
+    |          8.99 | DONNA       | DONNA.THOMPSON@sakilacustomer.org        | 2006-02-15 04:57:12 |
+    |          8.99 | CAROL       | CAROL.GARCIA@sakilacustomer.org          | 2006-02-15 04:57:12 |
+    |          9.99 | RUTH        | RUTH.MARTINEZ@sakilacustomer.org         | 2006-02-15 04:57:12 |
+    |          7.99 | SHARON      | SHARON.ROBINSON@sakilacustomer.org       | 2006-02-15 04:57:12 |
+    |         10.99 | MICHELLE    | MICHELLE.CLARK@sakilacustomer.org        | 2006-02-15 04:57:12 |
+    |          9.99 | LAURA       | LAURA.RODRIGUEZ@sakilacustomer.org       | 2006-02-15 04:57:12 |
+    |          9.99 | SARAH       | SARAH.LEWIS@sakilacustomer.org           | 2006-02-15 04:57:12 |
+    |          8.99 | KIMBERLY    | KIMBERLY.LEE@sakilacustomer.org          | 2006-02-15 04:57:12 |
+    +---------------+-------------+------------------------------------------+---------------------+
+    etc...
+    ```
 
   - Vista 2
     ```sql

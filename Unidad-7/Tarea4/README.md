@@ -763,7 +763,7 @@ etc...
     etc...
     ```
 
-    - Vista 3
+  - Vista 3
     ```sql
     create view film_per_actor as select  a.actor_id, a.first_name, a.last_name, f.film_id, f.title from actor a 
     join film_actor fa ON a.actor_id = fa.actor_id 
@@ -815,7 +815,7 @@ etc...
     etc...
     ```
 
-        - Vista 4
+  - Vista 4
     ```sql
         create view peliculas_populares_por_categoria as 
         select c.name, f.title, count(r.rental_id) AS num_alquileres from film f 
@@ -861,7 +861,7 @@ etc...
     etc...
     ```
 
-        - Vista 5
+  - Vista 5
     ```sql
     create view ingresos_por_pelicula as 
     select f.film_id, f.title, COUNT(r.rental_id) as num_alquileres, SUM(p.amount) AS ingreso_total from film f 

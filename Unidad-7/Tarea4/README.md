@@ -671,7 +671,12 @@ etc...
 
   - Vista 1
   ```sql
-  create view customer_spc AS(select max(p.amount), c.first_name, c.email, s.last_update from customer c join store s on s.store_id=c.store_id left join payment p on p.customer_id=c.customer_id where amount > 5  group by c.customer_id);
+    create view customer_spc AS (
+    select max(p.amount), c.first_name, c.email, s.last_update from customer c 
+    join store s on s.store_id=c.store_id 
+    left join payment p on p.customer_id=c.customer_id
+    where amount > 5  
+    group by c.customer_id);
   Query OK, 0 rows affected (0,02 sec)
   
   +---------------+-------------+------------------------------------------+---------------------+
@@ -704,10 +709,13 @@ etc...
   +---------------+-------------+------------------------------------------+---------------------+
   etc...
   ```
+
   - Vista 2
-    ```sql
-    CREATE VIEW clientes_actv AS SELECT c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS num_alquileres FROM customer c JOIN rental r ON
-c.customer_id = r.customer_id GROUP BY c.customer_id, c.first_name, c.last_name ORDER BY num_alquileres DESC;
+```sql
+    create view clientes_actv AS 
+    select c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS num_alquileres FROM customer c join rental r on c.customer_id = r.customer_id 
+    group by c.customer_id, c.first_name, c.last_name 
+    order by num_alquileres desc;
 Query OK, 0 rows affected (0,02 sec)
 
   select * from clientes_actv;
@@ -753,11 +761,15 @@ Query OK, 0 rows affected (0,02 sec)
 |         506 | LESLIE      | SEWARD       |             35 |
 +-------------+-------------+--------------+----------------+
 etc...
-    ```
+```
+
   - Vista 3
-    ```sql
-create view film_per_actor as select  a.actor_id, a.first_name, a.last_name, f.film_id, f.title from actor a join film_actor fa ON a.actor_id = fa.actor_id join film f ON fa.film_id = f.film_id;
+```sql
+create view film_per_actor as select  a.actor_id, a.first_name, a.last_name, f.film_id, f.title from actor a 
+join film_actor fa ON a.actor_id = fa.actor_id 
+join film f ON fa.film_id = f.film_id;
 Query OK, 0 rows affected (0,02 sec)
+
 select * from film_per_actor;
 +----------+-------------+--------------+---------+-----------------------------+
 | actor_id | first_name  | last_name    | film_id | title                       |
@@ -801,10 +813,17 @@ select * from film_per_actor;
 |        2 | NICK        | WAHLBERG     |     540 | LUCKY FLYING                |
 +----------+-------------+--------------+---------+-----------------------------+
 etc...
-    ```
+```
     - Vista 4
-    ```sql
-    create view peliculas_populares_por_categoria as select c.name, f.title, count(r.rental_id) AS num_alquileres from film f join film_category fc on f.film_id = fc.film_id join category c on fc.category_id = c.category_id join inventory i on f.film_id = i.film_id join rental r on i.inventory_id = r.inventory_id group by c.name, f.title;
+```sql
+    create view peliculas_populares_por_categoria as 
+    select c.name, f.title, count(r.rental_id) AS num_alquileres from film f 
+    join film_category fc on f.film_id = fc.film_id 
+    join category c on fc.category_id = c.category_id 
+    join inventory i on f.film_id = i.film_id 
+    join rental r on i.inventory_id = r.inventory_id 
+    group by c.name, f.title;
+
 select * from peliculas_populares_por_categoria;
 +-------------+-----------------------------+----------------+
 | name        | title                       | num_alquileres |
@@ -839,11 +858,16 @@ select * from peliculas_populares_por_categoria;
 | Action      | GOSFORD DONNIE              |              8 |
 +-------------+-----------------------------+----------------+
 etc...
-    ```
+```
 
     - Vista 5
-    ```sql
-create view ingresos_por_pelicula as select f.film_id, f.title, COUNT(r.rental_id) as num_alquileres, SUM(p.amount) AS ingreso_total from film f left join inventory i on f.film_id = i.film_id left join rental r on i.inventory_id = r.inventory_id left join payment p on r.rental_id = p.rental_id group by f.film_id, f.title;
+```sql
+create view ingresos_por_pelicula as 
+select f.film_id, f.title, COUNT(r.rental_id) as num_alquileres, SUM(p.amount) AS ingreso_total from film f 
+left join inventory i on f.film_id = i.film_id 
+left join rental r on i.inventory_id = r.inventory_id 
+left join payment p on r.rental_id = p.rental_id 
+group by f.film_id, f.title;
 
 select * from ingresos_por_pelicula;
 +---------+-----------------------------+----------------+---------------+
@@ -875,6 +899,6 @@ select * from ingresos_por_pelicula;
 |      24 | ANALYZE HOOSIERS            |             14 |         55.86 |
 +---------+-----------------------------+----------------+---------------+
 etc...
-    ```
+```
 ## Refecrencias
 [Sakila Database](https://dev.mysql.com/doc/sakila/en/sakila-introduction.html)

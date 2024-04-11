@@ -11,7 +11,7 @@ Vamos a realizar el trabajo con una BBDD existente en la documentación oficial 
 
 El diagrama ER de la base de datos es el siguiente:
 <p align="center">
-  <img src="/Users/nikki/1DAW/base datos git/Unidad-7/Tarea5/image.png" alt="Descripción de la imagen" width="300"/>
+  <img src="[/Users/nikki/1DAW/base datos git/Unidad-7/Tarea5/image.png](https://github.com/nicholelouis/Base-datos/blob/main/Unidad-7/Tarea5/image.png?raw=true)" alt="Descripción de la imagen" width="300"/>
 </p>
 
 ## Carga de datos

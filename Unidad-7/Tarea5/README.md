@@ -215,4 +215,4 @@ WHERE cliente.nombre_cliente LIKE '%A';
     ```
 
 ## Refecrencias
-[Sakila Database](https://dev.mysql.com/doc/sakila/en/sakila-introduction.html)
+[Jardineria Database](https://dev.mysql.com/doc/sakila/en/sakila-introduction.html)

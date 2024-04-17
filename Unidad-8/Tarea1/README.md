@@ -74,7 +74,7 @@ select * from Users;
 
 ```sql
 
-    - Actualizar el nombre de un usuario.
+- Actualizar el nombre de un usuario.
 DELIMITER //
 mysql> CREATE PROCEDURE modify_user( IN id INTEGER, IN nombre VARCHAR(50),
 IN email VARCHAR(50))
@@ -121,7 +121,7 @@ CALL total_price;
 | 161.35 |
 +--------+
 ```
-    - Función para contar el número de usuarios.
+- Función para contar el número de usuarios.
 ```sql
 DELIMITER //
 mysql> CREATE PROCEDURE total_users()

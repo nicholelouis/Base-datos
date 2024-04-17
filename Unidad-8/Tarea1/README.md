@@ -5,7 +5,7 @@ En este ejercicio, vamos a trabajar en la creación de una base de datos simple 
 
 Pasos:
 - Crea la Base de datos
-``sql
+```sql
 CREATE DATABASE IF NOT EXISTS SimpleDB;
 
 USE SimpleDB;
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Products (
 ```
 
 - Realuiza la inserción de algunos datos de prueba
-``sql
+```sql
 
 INSERT INTO Users (UserName, Email) VALUES ('Juan', 'juan@example.com');
 INSERT INTO Users (UserName, Email) VALUES ('María', 'maria@example.com');
@@ -98,7 +98,7 @@ mysql> select * from Users;
 - Implementa funciones para realizar cálculos o consultas:
 
   Función para calcular el precio total de un conjunto de productos.
-  ```sql
+```sql
 DELIMITER //
 mysql> CREATE PROCEDURE total_price()
     -> BEGIN
@@ -115,7 +115,7 @@ CALL total_price;
 +--------+
 | 161.35 |
 +--------+
-  ```
+```
   Función para contar el número de usuarios.
 ```sql
 DELIMITER //

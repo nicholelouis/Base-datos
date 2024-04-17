@@ -71,10 +71,8 @@ select * from Users;
 |      7 | nico      | nico@gmail.com    |
 +--------+-----------+-------------------+
 ```
-
-```sql
-
 - Actualizar el nombre de un usuario.
+```sql
 DELIMITER //
 mysql> CREATE PROCEDURE modify_user( IN id INTEGER, IN nombre VARCHAR(50),
 IN email VARCHAR(50))

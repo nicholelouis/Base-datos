@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Products (
 );
 ```
 
-- Realuiza la inserción de algunos datos de prueba
+- Realiza la inserción de algunos datos de prueba
 ```sql
 
 INSERT INTO Users (UserName, Email) VALUES ('Juan', 'juan@example.com');
@@ -45,7 +45,8 @@ INSERT INTO Products (ProductName, Price) VALUES ('Producto 3', 15.75);
 |      6 | Sebastian | sebas@example.com |
 +--------+-----------+-------------------+
 ```
-- Crea procedimientos almacenados para realizar operaciones como insertar un nuevo usuario, actualizar el nombre de un usuario, etc.
+- Crea procedimientos almacenados para realizar operaciones como:
+    - Insertar un nuevo usuario
 ```sql
 DELIMITER //
 mysql> CREATE PROCEDURE new_user(
@@ -72,15 +73,19 @@ select * from Users;
 ```
 
 ```sql
-DELIMITER //
-mysql> CREATE PROCEDURE modify_user( IN id INTEGER, IN nombre VARCHAR(50), IN email VARCHAR(50)) BEGIN UPDATE Users set UserName=nombre, Email=email WHERE UserID=id; END//
-Query OK, 0 rows affected (0,01 sec)
 
+    - Actualizar el nombre de un usuario.
+DELIMITER //
+mysql> CREATE PROCEDURE modify_user( IN id INTEGER, IN nombre VARCHAR(50),
+IN email VARCHAR(50))
+BEGIN
+UPDATE Users set UserName=nombre, Email=email WHERE UserID=id;
+END//
+Query OK, 0 rows affected (0,01 sec)
 mysql> DELIMITER ;
 
 CALL modify_user(3, 'tiff', 'tiff@gmail.com');
 Query OK, 1 row affected (0,01 sec)
-
 mysql> select * from Users;
 +--------+-----------+-------------------+
 | UserID | UserName  | Email             |
@@ -97,7 +102,7 @@ mysql> select * from Users;
 
 - Implementa funciones para realizar cálculos o consultas:
 
-  Función para calcular el precio total de un conjunto de productos.
+    - Función para calcular el precio total de un conjunto de productos.
 ```sql
 DELIMITER //
 mysql> CREATE PROCEDURE total_price()
@@ -107,8 +112,8 @@ mysql> CREATE PROCEDURE total_price()
     -> SELECT total;
     -> END //
 Query OK, 0 rows affected (0,01 sec)
-
 mysql> DELIMITER ;
+
 CALL total_price;
 +--------+
 | total  |
@@ -116,13 +121,18 @@ CALL total_price;
 | 161.35 |
 +--------+
 ```
-  Función para contar el número de usuarios.
+    - Función para contar el número de usuarios.
 ```sql
 DELIMITER //
-mysql> CREATE PROCEDURE total_users() BEGIN DECLARE total_u INTEGER; SELECT COUNT(UserID) INTO total_u FROM Users; SELECT total_u; END//
+mysql> CREATE PROCEDURE total_users()
+BEGIN
+DECLARE total_u INTEGER;
+SELECT COUNT(UserID) INTO total_u FROM Users;
+SELECT total_u;
+END//
 Query OK, 0 rows affected (0,01 sec)
-
 mysql> DELIMITER ;
+
 mysql> call total_users;
 +---------+
 | total_u |

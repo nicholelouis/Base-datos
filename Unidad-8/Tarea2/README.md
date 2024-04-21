@@ -14,13 +14,12 @@ Realice los siguientes procedimientos y funciones sobre la base de datos jardine
 
 Nota:Dado un código de pedido la función debe calcular la suma total del pedido. Tenga en cuenta que un pedido puede contener varios productos diferentes y varias cantidades de cada producto.
 
-    - Parámetros de entrada: codigo_pedido (INT)
-    - Parámetros de salida: El precio total del pedido (FLOAT)
+    + Parámetros de entrada: codigo_pedido (INT)
+    + Parámetros de salida: El precio total del pedido (FLOAT)
 ```sql
 DELIMITER $$
-mysql> CREATE FUNCTION calcular_precio_total_pedido (
-    -> codigo_pedido INT
-    -> ) RETURNS FLOAT
+mysql> CREATE FUNCTION total_order (codigo_pedido INT)
+    -> RETURNS FLOAT
     -> DETERMINISTIC
     -> READS SQL DATA
     -> SQL SECURITY INVOKER
@@ -32,19 +31,21 @@ mysql> CREATE FUNCTION calcular_precio_total_pedido (
     -> WHERE codigo_pedido = codigo_pedido;
     -> RETURN total_pedido;
     -> END $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
 ```
 
 - Función calcular_suma_pedidos_cliente
 
 Nota:Dado un código de cliente la función debe calcular la suma total de todos los pedidos realizados por el cliente. Deberá hacer uso de la función calcular_precio_total_pedido que ha desarrollado en el apartado anterior.
 
-    - Parámetros de entrada: codigo_cliente (INT)
-    - Parámetros de salida: La suma total de todos los pedidos del cliente (FLOAT)
+    + Parámetros de entrada: codigo_cliente (INT)
+    + Parámetros de salida: La suma total de todos los pedidos del cliente (FLOAT)
 ```sql
 mysql> DELIMITER $$
-mysql> CREATE FUNCTION calcular_suma_pedidos_cliente (
-    -> codigo_cliente INT
-    -> ) RETURNS FLOAT
+mysql> CREATE FUNCTION suma_pedidos_cliente (codigo_cliente INT)
+    -> RETURNS FLOAT
     -> READS SQL DATA
     -> BEGIN
     -> DECLARE total_pedidos_cliente FLOAT;
@@ -63,14 +64,13 @@ mysql> DELIMITER ;
 
 Nota:Dado un código de cliente la función debe calcular la suma total de los pagos realizados por ese cliente.
     
-    - Parámetros de entrada: codigo_cliente (INT)
-    - Parámetros de salida: La suma total de todos los pagos del cliente (FLOAT)
+    + Parámetros de entrada: codigo_cliente (INT)
+    + Parámetros de salida: La suma total de todos los pagos del cliente (FLOAT)
     
 ```sql
 DELIMITER $$
-mysql> CREATE FUNCTION calcular_suma_pagos_cliente (
-    -> codigo_cliente INT
-    -> ) RETURNS FLOAT
+mysql> CREATE FUNCTION suma_pagos_cliente (codigo_cliente INT)
+    -> RETURNS FLOAT
     -> READS SQL DATA
     -> BEGIN
     -> DECLARE total_pagos_cliente FLOAT;
@@ -124,7 +124,7 @@ Query OK, 0 rows affected (0.03 sec)
 mysql> DELIMITER ;
 ```
 
-### Carga de datos
+## Carga de datos
 
 Realiza la carga de la BBDD de Jardineria y describe los pasos que has realizado.
 

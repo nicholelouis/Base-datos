@@ -18,22 +18,26 @@ Nota:Dado un código de pedido la función debe calcular la suma total del pedid
     + Parámetros de salida: El precio total del pedido (FLOAT)
 ```sql
 DELIMITER $$
-mysql> CREATE FUNCTION total_order (codigo_pedido INT)
+mysql> CREATE FUNCTION calcular_precio_total_pedidos(id_pedido INTEGER)
+    -> RETURN
     -> RETURNS FLOAT
     -> DETERMINISTIC
-    -> READS SQL DATA
-    -> SQL SECURITY INVOKER
     -> BEGIN
-    -> DECLARE total_pedido FLOAT;
-    -> SET total_pedido = 0.0;
-    -> SELECT SUM(precio * cantidad) INTO total_pedido
-    -> FROM detalle_pedido
-    -> WHERE codigo_pedido = codigo_pedido;
-    -> RETURN total_pedido;
-    -> END $$
-Query OK, 0 rows affected (0.02 sec)
+    -> DECLARE total_price FLOAT;
+    -> SELECT SUM(d.cantidad * d.precio_unidad) INTO total_price FROM
+    -> detalle_pedido as d WHERE d.codigo_pedido = codigo_pedido;
+    -> RETURN total_price;
+    -> END$$
+Query OK, 0 rows affected (0,02 sec)
 
 mysql> DELIMITER ;
+mysql> SELECT calcular_precio_total_pedidos(3);
++----------------------------------+
+| calcular_precio_total_pedidos(3) |
++----------------------------------+
+|                           217738 |
++----------------------------------+
+1 row in set (0,01 sec)
 ```
 
 - Función calcular_suma_pedidos_cliente
@@ -68,21 +72,31 @@ Nota:Dado un código de cliente la función debe calcular la suma total de los p
     + Parámetros de salida: La suma total de todos los pagos del cliente (FLOAT)
     
 ```sql
-DELIMITER $$
-mysql> CREATE FUNCTION suma_pagos_cliente (codigo_cliente INT)
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION calcular_suma_pagos_cliente(codigo_cliente INT) 
     -> RETURNS FLOAT
-    -> READS SQL DATA
+    -> DETERMINISTIC
     -> BEGIN
-    -> DECLARE total_pagos_cliente FLOAT;
-    -> SET total_pagos_cliente = 0.0;
-    -> SELECT SUM(monto_pago) INTO total_pagos_cliente
-    -> FROM pagos
-    -> WHERE codigo_cliente = codigo_cliente;
-    -> RETURN total_pagos_cliente;
-    -> END $$
-Query OK, 0 rows affected (0.03 sec)
+    ->     DECLARE total_pagos_cliente FLOAT;
+    ->     
+    ->     SELECT SUM(total)
+    ->     INTO total_pagos_cliente
+    ->     FROM pago as p
+    ->     WHERE p.codigo_cliente = codigo_cliente
+    ->     GROUP BY codigo_cliente;
+    ->     
+    ->     RETURN total_pagos_cliente;
+    -> END$$
+Query OK, 0 rows affected (0,07 sec)
 
 mysql> DELIMITER ;
+
+SELECT calcular_suma_pagos_cliente(3);
++--------------------------------+
+| calcular_suma_pagos_cliente(3) |
++--------------------------------+
+|                          10926 |
++--------------------------------+
 ```
 
 - Procedimiento calcular_pagos_pendientes
@@ -114,7 +128,6 @@ mysql> CREATE PROCEDURE calcular_pagos_pendientes()
     -> WHERE codigo_cliente = codigo_cliente_var;
     -> SET pagos_pendientes = total_pedidos - total_pagos;
     -> IF (pagos_pendientes > 0) THEN
-    -> SELECT CONCAT('El cliente ', codigo_cliente_var, ' tiene pagos pendientes por un monto de ', pagos_pendientes) AS mensaje;
     ->  END IF;
     -> END LOOP;
     -> CLOSE cliente_cursor;

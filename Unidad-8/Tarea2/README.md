@@ -19,25 +19,24 @@ Nota:Dado un código de pedido la función debe calcular la suma total del pedid
 ```sql
 DELIMITER $$
 mysql> CREATE FUNCTION calcular_precio_total_pedidos(id_pedido INTEGER)
-    -> RETURN
     -> RETURNS FLOAT
     -> DETERMINISTIC
     -> BEGIN
     -> DECLARE total_price FLOAT;
     -> SELECT SUM(d.cantidad * d.precio_unidad) INTO total_price FROM
-    -> detalle_pedido as d WHERE d.codigo_pedido = codigo_pedido;
+    -> detalle_pedido as d WHERE d.codigo_pedido = id_pedido;
     -> RETURN total_price;
     -> END$$
 Query OK, 0 rows affected (0,02 sec)
 
 mysql> DELIMITER ;
-mysql> SELECT calcular_precio_total_pedidos(3);
+mysql> Select calcular_precio_total_pedidos(2);
 +----------------------------------+
-| calcular_precio_total_pedidos(3) |
+| calcular_precio_total_pedidos(2) |
 +----------------------------------+
-|                           217738 |
+|                             7113 |
 +----------------------------------+
-1 row in set (0,01 sec)
+1 row in set (0,00 sec)
 ```
 
 - Función calcular_suma_pedidos_cliente
@@ -48,20 +47,25 @@ Nota:Dado un código de cliente la función debe calcular la suma total de todos
     + Parámetros de salida: La suma total de todos los pedidos del cliente (FLOAT)
 ```sql
 mysql> DELIMITER $$
-mysql> CREATE FUNCTION suma_pedidos_cliente (codigo_cliente INT)
-    -> RETURNS FLOAT
-    -> READS SQL DATA
-    -> BEGIN
-    -> DECLARE total_pedidos_cliente FLOAT;
-    -> SET total_pedidos_cliente = 0.0;
-    -> SELECT SUM(calcular_precio_total_pedido(codigo_pedido)) INTO total_pedidos_cliente
-    -> FROM pedidos
-    -> WHERE codigo_cliente = codigo_cliente;
-    -> RETURN total_pedidos_cliente;
-    -> END $$
-Query OK, 0 rows affected (0.02 sec)
+CREATE FUNCTION suma_pedidos_cliente (codigo_cliente INT)
+RETURNS FLOAT
+DETERMINISTIC 
+BEGIN 
+DECLARE total_pedidos_cliente FLOAT;
+SET total_pedidos_cliente = 0.0;
+SELECT SUM(calcular_precio_total_pedido(codigo_pedido)) INTO total_pedidos_cliente
+FROM pedido p
+WHERE p.codigo_cliente=codigo_cliente;
+RETURN total_pedidos_cliente;
+END $$
 
 mysql> DELIMITER ;
+select suma_pedidos_cliente(1);
++-------------------------+
+| suma_pedidos_cliente(1) |
++-------------------------+
+|                   10365 |
++-------------------------+
 ```
 
 - Función calcular_suma_pagos_cliente

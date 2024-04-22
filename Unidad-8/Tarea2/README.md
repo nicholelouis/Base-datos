@@ -18,7 +18,7 @@ Nota:Dado un código de pedido la función debe calcular la suma total del pedid
     + Parámetros de salida: El precio total del pedido (FLOAT)
 ```sql
 DELIMITER $$
-mysql> CREATE FUNCTION calcular_precio_total_pedidos(id_pedido INTEGER)
+mysql> CREATE FUNCTION calcular_precio_total_pedidos (id_pedido INTEGER)
     -> RETURNS FLOAT
     -> DETERMINISTIC
     -> BEGIN
@@ -81,15 +81,13 @@ mysql> CREATE FUNCTION calcular_suma_pagos_cliente(codigo_cliente INT)
     -> RETURNS FLOAT
     -> DETERMINISTIC
     -> BEGIN
-    ->     DECLARE total_pagos_cliente FLOAT;
-    ->     
-    ->     SELECT SUM(total)
-    ->     INTO total_pagos_cliente
-    ->     FROM pago as p
-    ->     WHERE p.codigo_cliente = codigo_cliente
-    ->     GROUP BY codigo_cliente;
-    ->     
-    ->     RETURN total_pagos_cliente;
+    -> DECLARE total_pagos_cliente FLOAT;
+    -> SELECT SUM(total)
+    -> INTO total_pagos_cliente
+    -> FROM pago as p
+    -> WHERE p.codigo_cliente = codigo_cliente
+    -> GROUP BY codigo_cliente;
+    -> RETURN total_pagos_cliente;
     -> END$$
 Query OK, 0 rows affected (0,07 sec)
 

@@ -51,9 +51,8 @@ mysql> CREATE PROCEDURE aumentar_salarios(IN porcentaje DECIMAL(5,2), IN max_sal
     -> BEGIN 
     -> DECLARE done INT DEFAULT FALSE;
     -> DECLARE emp_id INT;
-    -> DECLARE emp_nombre VARCHAR(100);
     -> DECLARE emp_salario DECIMAL(10, 2);
-    -> DECLARE cur CURSOR FOR SELECT id, nombre, salario FROM empleados;
+    -> DECLARE cur CURSOR FOR SELECT id, salario FROM empleados where salario > max_sal;
     ->  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
     -> 
     -> OPEN cur;
@@ -62,7 +61,7 @@ mysql> CREATE PROCEDURE aumentar_salarios(IN porcentaje DECIMAL(5,2), IN max_sal
     -> IF done THEN
     -> LEAVE read_loop;
     -> END IF;
-    -> UPDATE empleados SET salario = salario * (1 + porcentaje / 100) WHERE salario > max_sal and id = emp_id;
+    -> UPDATE empleados SET salario = salario * (1 + porcentaje / 100) WHERE id = emp_id;
     -> END LOOP;
     -> CLOSE cur;
     -> END $$
@@ -84,7 +83,7 @@ select * from empleados;
 
 ```sql
   DELIMITER //
-  CREATE PROCEDURE salario_anual4(IN month INTEGER, IN idd INTEGER)
+  CREATE PROCEDURE salario_anual()
   BEGIN
       DECLARE done INT DEFAULT FALSE;
       DECLARE emp_salario DECIMAL(10, 2);
@@ -97,18 +96,39 @@ select * from empleados;
           IF done THEN
               LEAVE read_loop;
           END IF;
-          SELECT salario * month as total, id, nombre from empleados WHERE id = idd;
+          SELECT emp_salario * 12 as total, id, nombre from empleados;
       END LOOP;
       CLOSE cur;
   END //
   DELIMITER ;
 
+CALL salario_anual();
 +----------+----+--------+
 | total    | id | nombre |
 +----------+----+--------+
-| 44100.00 |  2 | María  |
+| 36000.00 |  1 | Juan   |
+| 36000.00 |  2 | María  |
+| 36000.00 |  3 | Pedro  |
 +----------+----+--------+
-1 row in set (0,01 sec)
+3 rows in set (0,01 sec)
+
++----------+----+--------+
+| total    | id | nombre |
++----------+----+--------+
+| 44100.00 |  1 | Juan   |
+| 44100.00 |  2 | María  |
+| 44100.00 |  3 | Pedro  |
++----------+----+--------+
+3 rows in set (0,01 sec)
+
++----------+----+--------+
+| total    | id | nombre |
++----------+----+--------+
+| 38400.00 |  1 | Juan   |
+| 38400.00 |  2 | María  |
+| 38400.00 |  3 | Pedro  |
++----------+----+--------+
+3 rows in set (0,01 sec)
 ```
 
 - 3.- Escribe un procedimiento almacenado que cuente y muestre el número de empleados en cada rango de salario (por ejemplo, menos de 3000, entre 3000 y 5000, más de 5000). El procedimiento debe tener parámetros de entrada.
@@ -121,7 +141,8 @@ mysql>   CREATE PROCEDURE sal_between(IN min DECIMAL(10,2), IN max DECIMAL(10,2)
     ->       DECLARE emp_id INT;
     ->       DECLARE emp_nombre VARCHAR(100);
     ->       DECLARE emp_salario DECIMAL(10, 2);
-    ->       DECLARE cur CURSOR FOR SELECT id, nombre, salario FROM empleados;
+              DECLARE emp_count INT DEFAULT 0
+    ->       DECLARE cur CURSOR FOR SELECT id, nombre, salario FROM empleados where salario BETWEEN min and max;
     ->       DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
     -> 
     ->       OPEN cur;
@@ -134,6 +155,8 @@ mysql>   CREATE PROCEDURE sal_between(IN min DECIMAL(10,2), IN max DECIMAL(10,2)
     ->       END LOOP;
     ->       CLOSE cur;
     ->   END //
+
+CALL sal_between(1000, 3000);
 Query OK, 0 rows affected (0,00 sec)
 
 +------------------+

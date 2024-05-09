@@ -12,11 +12,37 @@ La base de datos de "empleados" es un sistema diseñado para gestionar informaci
 
 La tabla "empleados" está diseñada con las siguientes columnas:
 
-    - id: Esta columna sirve como identificador único para cada empleado. Es de tipo entero y se genera automáticamente utilizando la propiedad AUTO_INCREMENT.
-    - nombre: Almacena el nombre completo de cada empleado. Es de tipo cadena de caracteres (VARCHAR) con una longitud máxima de 100 caracteres.
-    - salario: Esta columna registra el salario de cada empleado. Se define como un número decimal (DECIMAL) con una precisión de 10 dígitos en total y 2 dígitos después del punto decimal.
+- id: Esta columna sirve como identificador único para cada empleado. Es de tipo entero y se genera automáticamente utilizando la propiedad AUTO_INCREMENT.
+- nombre: Almacena el nombre completo de cada empleado. Es de tipo cadena de caracteres (VARCHAR) con una longitud máxima de 100 caracteres.
+- salario: Esta columna registra el salario de cada empleado. Se define como un número decimal (DECIMAL) con una precisión de 10 dígitos en total y 2 dígitos después del punto decimal.
+```sql
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS empresa;
+USE empresa;
 
+-- Crear la tabla empleados
+CREATE TABLE empleados (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    salario DECIMAL(10, 2)
+);
 
+-- Insertar algunos datos de ejemplo
+INSERT INTO empleados (nombre, salario) VALUES
+('Juan', 3000.00),
+('María', 3500.00),
+('Pedro', 3200.00);
+```
+```sql
++----+--------+---------+
+| id | nombre | salario |
++----+--------+---------+
+|  1 | Juan   | 3000.00 |
+|  2 | María  | 3500.00 |
+|  3 | Pedro  | 3200.00 |
++----+--------+---------+
+```
+En base a la tabla anterior:
 
 - Escribe un procedimiento almacenado que copie los nombres de todos los empleados cuyo salario sea superior a 3000 en una nueva tabla llamada 'empleados_destino'. Es necesario crear la tabla empleados_destiono.
 ```sql

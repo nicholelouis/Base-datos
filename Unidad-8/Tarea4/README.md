@@ -1,11 +1,11 @@
 # Programación en SLQ
-## Trabajo con cursores la BBDD Empleados
+## Tarea 4
 
 <p align="center">
   <img src="https://github.com/nicholelouis/Base-datos/blob/main/img/optimizacion-bd.png?raw=true" alt="Descripción de la imagen" width="300"/>
 </p>
 
-## Tarea 4
+## Trabajo con cursores la BBDD Empleados
 
 La base de datos de "empleados" es un sistema diseñado para gestionar información relacionada con los empleados de una empresa. Esta base de datos está estructurada en torno a la entidad principal "empleados", que contiene información detallada sobre cada empleado. La estructura de la base de datos se compone de una única tabla principal llamada "empleados".
 

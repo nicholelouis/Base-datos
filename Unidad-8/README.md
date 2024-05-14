@@ -67,6 +67,18 @@ mysql> select * from empleados;
 2. Inserta tres filas en la tabla empleados con nombres aleatorios generados usando la función UUID().
 ```sql
 
+CREATE PROCEDURE names(IN name_b VARCHAR(50), IN sal_min DECIMAL(10,2), IN sal_max DECIMAL(10,2), IN times INT)
+BEGIN
+    DECLARE counter INT DEFAULT 0;
+
+    WHILE counter < times DO
+        INSERT INTO empleados (nombre, salario)
+        VALUES (CONCAT(name_b, UUID()), FLOOR(RAND() * (sal_max - sal_min + 1)));
+        SET counter = counter + 1;
+    END WHILE;
+END //
+
+DELIMITER ;
 ```
 ```sql
 

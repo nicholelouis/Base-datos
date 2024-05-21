@@ -174,8 +174,8 @@ select * from persona;
 
 - Función pension: La pensión que corresponde al 4% al salario básico. Actualiza el valor en la tabla.
 ```sql
-mysql>   DELIMITER //
-mysql>   CREATE PROCEDURE act_pen(IN porcentaje DECIMAL(5,2))
+DELIMITER //
+CREATE PROCEDURE act_pen(IN porcentaje DECIMAL(5,2))
     ->   BEGIN
     ->       DECLARE done INT DEFAULT FALSE;
     ->       DECLARE per_id VARCHAR(50);
@@ -194,15 +194,11 @@ mysql>   CREATE PROCEDURE act_pen(IN porcentaje DECIMAL(5,2))
     ->       END LOOP;
     ->       CLOSE cur;
     ->   END //
-Query OK, 0 rows affected (0,06 sec)
-
-mysql>   DELIMITER ;
+DELIMITER ;
 ```
 ```sql
 call act_pen(4);
-Query OK, 0 rows affected (0,17 sec)
-
-mysql> select * from persona;
+select * from persona;
 +----------+---------+----------+----------+--------+---------+-------+----------+
 | id       | name    | sal_base | subsidio | salud  | pension | bono  | integral |
 +----------+---------+----------+----------+--------+---------+-------+----------+
@@ -246,11 +242,7 @@ mysql> select * from persona;
 ```
 ```sql
 call act_bono(8);
-Query OK, 0 rows affected (0,06 sec)
-
-mysql> select * drom persona;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drom persona' at line 1
-mysql> select * from persona;
+select * from persona;
 +----------+---------+----------+----------+--------+---------+---------+----------+
 | id       | name    | sal_base | subsidio | salud  | pension | bono    | integral |
 +----------+---------+----------+----------+--------+---------+---------+----------+
@@ -265,8 +257,6 @@ mysql> select * from persona;
 | e3979e5b | nikki8  | 14628.00 |  1023.96 | 585.12 |  585.12 | 1170.24 |    43.00 |
 | e3984c88 | nikki35 |  8411.00 |   588.77 | 336.44 |  336.44 |  672.88 |    22.00 |
 +----------+---------+----------+----------+--------+---------+---------+----------+
-10 rows in set (0,00 sec)
-
 ```
 
 - Función integral: El salario integral es la suma del salario básico - salud - pension + bono + sub de transporte. Actualiza el valor en la tabla.
@@ -277,8 +267,111 @@ mysql> select * from persona;
       DECLARE done INT DEFAULT FALSE;
       DECLARE per_id VARCHAR(50);
       DECLARE per_sal DECIMAL(10, 2);
+      DECLARE cur CURSOR FOR SELECT id, sal_base, bono, subsidio, salud, pension, integral FROM persona;
+      DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+      OPEN cur;
+      read_loop: LOOP
+          FETCH cur INTO per_id, per_sal;
+          IF done THEN
+              LEAVE read_loop;
+          END IF;
+          UPDATE persona SET integral = (sal_base - salud - pension + bono + subsidio) WHERE id = per_id;
+      END LOOP;
+      CLOSE cur;
+  END //
+  DELIMITER ;
+```
+
+- Crea cada uno de las funciones anteriores para una persona en específico.
+- El parámetro de entrada debe de ser un identificar de la persona.
+
+func 1
+```sql
+DELIMITER //
+CREATE PROCEDURE act_sub(IN porcentaje DECIMAL(5,2), IN id_per INT)
+    ->   BEGIN
+    ->       DECLARE done INT DEFAULT FALSE;
+    ->       DECLARE per_id VARCHAR(50);
+    ->       DECLARE per_sal DECIMAL(10, 2);
+    ->       DECLARE per_sub DECIMAL(10, 2);
+    ->       DECLARE cur CURSOR FOR SELECT id, sal_base, subsidio FROM persona where id = id_per;
+    ->       DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    -> 
+    ->       OPEN cur;
+    ->       read_loop: LOOP
+    ->           FETCH cur INTO per_id, per_sal, per_sub;
+    ->           IF done THEN
+    ->               LEAVE read_loop;
+    ->           END IF;
+    ->           UPDATE persona SET subsidio = sal_base * (porcentaje / 100) WHERE id = per_id;
+    ->       END LOOP;
+    ->       CLOSE cur;
+    ->   END //
+DELIMITER ;
+```
+
+func 2
+```sql
+DELIMITER //
+CREATE PROCEDURE act_salud(IN porcentaje DECIMAL(5,2), IN id_per INT)
+    ->   BEGIN
+    ->       DECLARE done INT DEFAULT FALSE;
+    ->       DECLARE per_id VARCHAR(50);
+    ->       DECLARE per_sal DECIMAL(10, 2);
+    ->       DECLARE per_salu DECIMAL(10, 2);
+    ->       DECLARE cur CURSOR FOR SELECT id, sal_base, salud FROM persona where id = id_per;
+    ->       DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    -> 
+    ->       OPEN cur;
+    ->       read_loop: LOOP
+    ->           FETCH cur INTO per_id, per_sal, per_salu;
+    ->           IF done THEN
+    ->               LEAVE read_loop;
+    ->           END IF;
+    ->           UPDATE persona SET salud = sal_base * (porcentaje / 100) WHERE id = per_id;
+    ->       END LOOP;
+    ->       CLOSE cur;
+    ->   END //
+DELIMITER ;
+```
+
+func 3
+```sql
+DELIMITER //
+CREATE PROCEDURE act_pen(IN porcentaje DECIMAL(5,2), IN id_per INT)
+    ->   BEGIN
+    ->       DECLARE done INT DEFAULT FALSE;
+    ->       DECLARE per_id VARCHAR(50);
+    ->       DECLARE per_sal DECIMAL(10, 2);
+    ->       DECLARE per_pen DECIMAL(10, 2);
+    ->       DECLARE cur CURSOR FOR SELECT id, sal_base, pension FROM persona where id = id_per;
+    ->       DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    -> 
+    ->       OPEN cur;
+    ->       read_loop: LOOP
+    ->           FETCH cur INTO per_id, per_sal, per_pen;
+    ->           IF done THEN
+    ->               LEAVE read_loop;
+    ->           END IF;
+    ->           UPDATE persona SET pension = sal_base * (porcentaje / 100) WHERE id = per_id;
+    ->       END LOOP;
+    ->       CLOSE cur;
+    ->   END //
+
+ DELIMITER ;
+```
+
+func 4
+```sql
+  DELIMITER //
+  CREATE PROCEDURE act_bono(IN porcentaje DECIMAL(5,2), IN id_per INT)
+  BEGIN
+      DECLARE done INT DEFAULT FALSE;
+      DECLARE per_id VARCHAR(50);
+      DECLARE per_sal DECIMAL(10, 2);
       DECLARE per_bon DECIMAL(10, 2);
-      DECLARE cur CURSOR FOR SELECT id, sal_base, bono FROM persona;
+      DECLARE cur CURSOR FOR SELECT id, sal_base, bono FROM persona where id = id_per;
       DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
       OPEN cur;
@@ -287,23 +380,35 @@ mysql> select * from persona;
           IF done THEN
               LEAVE read_loop;
           END IF;
-          UPDATE persona SET integral = sal_base - salud - pension + bono + subsidio WHERE id = per_id;
+          UPDATE persona SET bono = sal_base * (porcentaje / 100) WHERE id = per_id;
       END LOOP;
       CLOSE cur;
   END //
   DELIMITER ;
 ```
+
+func 5
 ```sql
+DELIMITER //
+  CREATE PROCEDURE act_bono(IN porcentaje DECIMAL(5,2), IN id_per INT)
+  BEGIN
+      DECLARE done INT DEFAULT FALSE;
+      DECLARE per_id VARCHAR(50);
+      DECLARE per_sal DECIMAL(10, 2);
+      DECLARE cur CURSOR FOR SELECT id, sal_base, bono, subsidio, salud, pension, integral FROM persona where id = id_per;
+      DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
-```
-
-- Crea cada uno de las funciones anteriores para una persona en específico.
-- El parámetro de entrada debe de ser un identificar de la persona.
-```sql
-
-```
-```sql
-
+      OPEN cur;
+      read_loop: LOOP
+          FETCH cur INTO per_id, per_sal;
+          IF done THEN
+              LEAVE read_loop;
+          END IF;
+          UPDATE persona SET integral = (sal_base - salud - pension + bono + subsidio) WHERE id = per_id;
+      END LOOP;
+      CLOSE cur;
+  END //
+  DELIMITER ;
 ```
 
 

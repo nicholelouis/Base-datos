@@ -5,7 +5,7 @@
   <img src="https://github.com/nicholelouis/Base-datos/blob/main/img/optimizacion-bd.png?raw=true" alt="Descripción de la imagen" width="300"/>
 </p>
 
-## Trabajo con procedimientos de generación de información, Funciones y Triggers
+## Trabajo con Triggers y registros.
 
 ```sql
 DROP TABLE IF EXISTS alumnos;
